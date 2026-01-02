@@ -6,274 +6,102 @@
     <title>SmartKurikulum Center - SMK Negeri 1 Maluku Tengah</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+        /* --- CSS DASAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         :root {
             --primary-blue: #1A73E8;
             --secondary-green: #34A853;
-            --accent-yellow: #FBBC04;
-            --accent-red: #EA4335;
-            --accent-purple: #9C27B0;
-            --accent-orange: #FF6F00;
-            --light-gray: #F8F9FA;
+            --accent-purple: #5227FF; /* Warna dari request LiquidEther */
+            --accent-pink: #FF9FFC;   /* Warna dari request LiquidEther */
+            --accent-lavender: #B19EEF; /* Warna dari request LiquidEther */
             --dark-gray: #5F6368;
-            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        body { 
+            background-color: #f0f4f8; 
+            color: #333; 
+            line-height: 1.6; 
+            min-height: 100vh; 
+            overflow-x: hidden; 
+            position: relative; 
         }
 
-        body {
-            background-color: #80e0e0;
-            color: #cdd455;
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        .animated-bg {
+        /* --- BACKGROUND LIQUID ETHER EFFECT (CSS VERSION) --- */
+        .liquid-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             overflow: hidden;
+            background: #ffffff;
         }
-
-        .gradient-bg {
+        
+        /* Membuat efek blur kaca agar blob terlihat menyatu seperti cairan */
+        .liquid-overlay {
             position: absolute;
-            width: 500%;
-            height: 500%;
-            top: -200%;
-            left: -200%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(26, 115, 232, 0.4) 0%, transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(52, 168, 83, 0.3) 0%, transparent 25%),
-                radial-gradient(circle at 40% 80%, rgba(251, 188, 4, 0.2) 0%, transparent 25%),
-                radial-gradient(circle at 70% 20%, rgba(234, 67, 53, 0.2) 0%, transparent 25%);
-            animation: rotateGradient 60s linear infinite;
+            top: 0; left: 0; width: 100%; height: 100%;
+            backdrop-filter: blur(80px); /* Kunci efek liquid */
+            z-index: 0;
+            opacity: 0.8; 
         }
 
-        .gradient-bg-2 {
-            position: absolute;
-            width: 400%;
-            height: 400%;
-            top: -150%;
-            left: -150%;
-            background: 
-                radial-gradient(circle at 60% 40%, rgba(82, 39, 255, 0.25) 0%, transparent 30%),
-                radial-gradient(circle at 30% 60%, rgba(255, 159, 252, 0.2) 0%, transparent 30%),
-                radial-gradient(circle at 80% 80%, rgba(177, 158, 239, 0.15) 0%, transparent 30%);
-            animation: rotateGradientReverse 45s linear infinite;
-        }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .shape {
+        .blob {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            animation: float 20s infinite ease-in-out;
+            animation: move 20s infinite alternate;
+            opacity: 0.7;
         }
 
-        .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
+        /* Blob 1: Ungu Tua */
+        .blob-1 {
+            width: 50vw; height: 50vw;
+            background: var(--accent-purple);
+            top: -10%; left: -10%;
+            animation-duration: 25s;
         }
 
-        .shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 10%;
-            animation-delay: -5s;
-            background: rgba(52, 168, 83, 0.1);
+        /* Blob 2: Pink Terang */
+        .blob-2 {
+            width: 40vw; height: 40vw;
+            background: var(--accent-pink);
+            bottom: -10%; right: -10%;
+            animation-duration: 30s;
+            animation-direction: alternate-reverse;
         }
 
-        .shape:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: -10s;
-            background: rgba(251, 188, 4, 0.1);
+        /* Blob 3: Lavender */
+        .blob-3 {
+            width: 45vw; height: 45vw;
+            background: var(--accent-lavender);
+            top: 40%; left: 40%;
+            transform: translate(-50%, -50%);
+            animation-duration: 22s;
         }
 
-        .shape:nth-child(4) {
-            width: 250px;
-            height: 250px;
-            top: 20%;
-            right: 20%;
-            animation-delay: -15s;
-            background: rgba(234, 67, 53, 0.1);
+        @keyframes move {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
         }
+        /* ----------------------------------------------------- */
 
-        @keyframes rotateGradient {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes rotateGradientReverse {
-            0% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-            25% { transform: translateY(-20px) translateX(10px) scale(1.05); }
-            50% { transform: translateY(0) translateX(20px) scale(1); }
-            75% { transform: translateY(20px) translateX(10px) scale(0.95); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes logoFloat {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-                filter: drop-shadow(0 5px 15px rgba(26, 115, 232, 0.3));
-            }
-            50% {
-                transform: translateY(-5px) scale(1.02);
-                filter: drop-shadow(0 8px 25px rgba(26, 115, 232, 0.5));
-            }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
+        /* HEADER STYLING */
         header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
-            animation: slideInUp 0.8s ease-out;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
         }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header-content { display: flex; align-items: center; padding: 12px 0; }
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            margin-right: 30px;
-            position: relative;
-            padding: 5px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(135deg, 
-                rgba(26, 115, 232, 0.1), 
-                rgba(52, 168, 83, 0.1), 
-                rgba(251, 188, 4, 0.1));
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .logo:hover::before {
-            opacity: 1;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-background {
-            position: absolute;
-            width: 110px;
-            height: 110px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            border-radius: 20px;
-            opacity: 0.1;
-            z-index: 0;
-            animation: logoFloat 6s infinite ease-in-out;
-        }
-
+        .logo { margin-right: 20px; display: flex; align-items: center; background: transparent !important; }
         .logo img {
-            height: 100px;
-            width: auto;
-            position: relative;
-            z-index: 1;
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
-            border-radius: 10px;
-            padding: 5px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
-        }
-
-        .logo:hover img {
-            transform: scale(1.05) rotate(3deg);
-            filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3));
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .header-text {
-            flex-grow: 1;
+            height: 85px; width: auto; object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); 
+            background-color: transparent;
         }
 
         .header-text h1 {
@@ -281,600 +109,114 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header-text p {
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, rgba(26, 115, 232, 0.9), rgba(52, 168, 83, 0.9));
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0 0 30px 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: slideInUp 1s ease-out 0.2s both;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
-            opacity: 0.3;
-            animation: pulse 3s infinite ease-in-out;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            line-height: 1.3;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1.2s ease-out 0.4s both;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffffff, #f0f0f0);
-            color: var(--primary-blue);
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-decoration: none;
-            margin-top: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 1.4s ease-out 0.6s both;
-        }
-
-        .hero-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.7s;
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #f8f8f8, #ffffff);
-        }
-
-        .hero-btn:hover::before {
-            left: 100%;
-        }
-
-        .search-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            margin: -50px auto 60px;
-            max-width: 800px;
-            position: relative;
-            z-index: 10;
-            animation: slideInUp 1s ease-out 0.8s both;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            border-radius: 50px;
-            padding: 5px 25px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-container:focus-within {
-            border-color: var(--primary-blue);
-            box-shadow: 0 4px 20px rgba(26, 115, 232, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .search-container i {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-            margin-right: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .search-container:focus-within i {
-            transform: scale(1.1);
-        }
-
-        .search-container input {
-            flex-grow: 1;
-            border: none;
-            background: transparent;
-            padding: 18px 0;
-            font-size: 1.1rem;
-            outline: none;
-            color: #333;
-        }
-
-        .search-container input::placeholder {
-            color: #888;
-        }
-
-        .dashboard {
-            margin-bottom: 80px;
-            animation: fadeIn 1s ease-out 1s both;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 10px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid;
-            border-image: linear-gradient(135deg, var(--primary-blue), var(--secondary-green)) 1;
-            font-weight: 700;
-        }
-
-        .section-subtitle {
-            color: var(--dark-gray);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-            max-width: 800px;
-        }
-
-        .categories {
-            margin-bottom: 50px;
-        }
-
-        .category-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 15px;
-            font-size: 1.4rem;
-            font-weight: 600;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .category-title:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-title.blue {
-            background: linear-gradient(135deg, var(--primary-blue), #3d8bf7);
-        }
-
-        .category-title.green {
-            background: linear-gradient(135deg, var(--secondary-green), #4cce6a);
-        }
-
-        .category-title.yellow {
-            background: linear-gradient(135deg, var(--accent-yellow), #ffcb45);
-        }
-
-        .category-title i {
-            margin-right: 15px;
             font-size: 1.6rem;
+            font-weight: 800;
         }
+        .header-text p { color: var(--dark-gray); font-size: 0.9rem; font-weight: 500; }
 
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            border-top: 6px solid transparent;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            animation: slideInUp 0.6s ease-out both;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card.blue-border {
-            border-top-color: var(--primary-blue);
-        }
-
-        .card.green-border {
-            border-top-color: var(--secondary-green);
-        }
-
-        .card.yellow-border {
-            border-top-color: var(--accent-yellow);
-        }
-
-        .card.rapor-special {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.98) 0%,
-                rgba(156, 39, 176, 0.08) 50%,
-                rgba(255, 111, 0, 0.08) 100%
-            );
-            border-top: 6px solid;
-            border-image: linear-gradient(135deg, var(--accent-purple), var(--accent-orange)) 1;
-            position: relative;
-        }
-
-        .card.rapor-special::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                rgba(156, 39, 176, 0) 0%,
-                rgba(156, 39, 176, 0.1) 50%,
-                rgba(255, 111, 0, 0) 100%
-            );
-            animation: shimmer 3s infinite linear;
-            pointer-events: none;
-        }
-
-        .card.rapor-special:hover {
-            box-shadow: 0 20px 50px rgba(156, 39, 176, 0.35);
-            transform: translateY(-18px) scale(1.03);
-        }
-
-        .card.rapor-special .card-icon {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-orange));
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: pulse 2.5s infinite ease-in-out;
-        }
-
-        .card.rapor-special .card-link {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-orange));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
-        }
-
-        .card-icon {
-            font-size: 3.2rem;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            transition: transform 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+        /* HERO SECTION */
+        .hero {
+            /* Background transparan agar efek liquid terlihat */
+            background: rgba(255, 255, 255, 0.5); 
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.4);
             color: #333;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-subtitle {
-            color: var(--dark-gray);
-            font-size: 1rem;
-            margin-bottom: 25px;
-            flex-grow: 1;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-link {
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            margin-top: auto;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-link i {
-            margin-left: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .card-link {
-            color: var(--secondary-green);
-        }
-
-        .card:hover .card-link i {
-            transform: translateX(8px);
-        }
-
-        footer {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(33, 47, 60, 0.95));
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 60px;
-            position: relative;
-            overflow: hidden;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 80px 0 100px;
             text-align: center;
-            position: relative;
-            z-index: 1;
+            border-radius: 25px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff, #cccccc);
+        .hero h2 { 
+            font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; 
+            background: linear-gradient(135deg, #1A73E8, #5227FF);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-
-        .footer-links {
-            margin: 25px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-        }
-
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links a:hover {
+        .hero-btn {
+            display: inline-block; 
+            background: linear-gradient(135deg, var(--accent-purple), #1A73E8); 
             color: white;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 12px 35px; border-radius: 50px; font-weight: 700; text-decoration: none;
+            box-shadow: 0 5px 15px rgba(82, 39, 255, 0.3); transition: transform 0.3s;
         }
+        .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(82, 39, 255, 0.4); }
 
-        .copyright {
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            color: #aaa;
-            font-size: 0.95rem;
-            line-height: 1.6;
+        /* SEARCH & CONTENT */
+        .search-section { margin-top: -35px; margin-bottom: 50px; position: relative; z-index: 10; }
+        .search-container {
+            background: rgba(255, 255, 255, 0.95); display: flex; align-items: center;
+            border-radius: 50px; padding: 12px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); max-width: 700px; margin: 0 auto;
+            backdrop-filter: blur(10px);
         }
+        .search-container input { flex-grow: 1; border: none; font-size: 1.1rem; outline: none; background: transparent; }
+        
+        .categories { margin-bottom: 50px; }
+        .category-header { 
+            display: flex; align-items: center; margin-bottom: 20px; padding-bottom: 10px; 
+            border-bottom: 2px solid rgba(0,0,0,0.1); 
+        }
+        .category-name { font-size: 1.4rem; font-weight: 700; margin-left: 15px; color: #333; }
+        
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.85); /* Semi transparan */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 18px; padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); text-decoration: none; color: inherit;
+            display: flex; flex-direction: column; transition: all 0.3s ease;
+        }
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 35px rgba(82, 39, 255, 0.15); 
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .card-icon { font-size: 2rem; margin-bottom: 15px; }
+        .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: #2c3e50; }
+        .card-desc { font-size: 0.95rem; color: #666; margin-bottom: 20px; flex-grow: 1; }
+        .card-arrow { color: var(--accent-purple); font-weight: 600; font-size: 0.9rem; }
+        
+        /* Warna Icon per Kategori */
+        .cat-admin .card-icon { color: var(--primary-blue); }
+        .cat-guru .card-icon { color: var(--secondary-green); }
+        .cat-nilai .card-icon { color: var(--accent-purple); }
 
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
-        .card:nth-child(6) { animation-delay: 0.6s; }
-        .card:nth-child(7) { animation-delay: 0.7s; }
-        .card:nth-child(8) { animation-delay: 0.8s; }
-        .card:nth-child(9) { animation-delay: 0.9s; }
-        .card:nth-child(10) { animation-delay: 1s; }
-        .card:nth-child(11) { animation-delay: 1.1s; }
-        .card:nth-child(12) { animation-delay: 1.2s; }
-        .card:nth-child(13) { animation-delay: 1.3s; }
-
-        @media (max-width: 992px) {
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-            
-            .gradient-bg, .gradient-bg-2 {
-                width: 600%;
-                height: 600%;
-            }
-            
-            .logo img {
-                height: 90px;
-            }
-            
-            .logo-background {
-                width: 100px;
-                height: 100px;
-            }
+        footer { 
+            background: rgba(44, 62, 80, 0.9); 
+            backdrop-filter: blur(10px);
+            color: white; padding: 40px 0; margin-top: 80px; text-align: center; 
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .logo {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            
-            .hero h2 {
-                font-size: 1.8rem;
-            }
-            
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-section {
-                margin: -30px auto 40px;
-                padding: 20px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .gradient-bg, .gradient-bg-2 {
-                width: 800%;
-                height: 800%;
-            }
-            
-            .logo img {
-                height: 85px;
-            }
-            
-            .logo-background {
-                width: 95px;
-                height: 95px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero {
-                padding: 70px 0;
-            }
-            
-            .hero h2 {
-                font-size: 1.6rem;
-            }
-            
-            .hero-btn {
-                padding: 14px 28px;
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .category-title {
-                font-size: 1.2rem;
-                padding: 12px 20px;
-            }
-            
-            .card {
-                padding: 25px;
-            }
-            
-            .logo img {
-                height: 80px;
-            }
-            
-            .logo-background {
-                width: 90px;
-                height: 90px;
-            }
+            .header-content { flex-direction: row; }
+            .logo img { height: 60px; }
+            .header-text h1 { font-size: 1.2rem; }
+            .hero h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
-    <div class="animated-bg">
-        <div class="gradient-bg"></div>
-        <div class="gradient-bg-2"></div>
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
+    
+    <div class="liquid-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="liquid-overlay"></div>
     </div>
-
+    
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-container">
-                        <div class="logo-background"></div>
-                       <img src="https://i.ibb.co/JFSV43cd/logo-SMK-Negeri-1-Maluku-Tengah-2026.png" alt="logo SMK Negeri 1 Maluku Tengah 2026" border="0">
-                    </div>
+                    <img src="https://iili.io/fhgPV3X.md.png" alt="Logo SMKN 1 Malteng">
                 </div>
                 <div class="header-text">
                     <h1>SmartKurikulum Center</h1>
-                    <p>Portal Informasi Guru SMK Negeri 1 Maluku Tengah</p>
+                    <p>SMK Negeri 1 Maluku Tengah</p>
                 </div>
             </div>
         </div>
@@ -883,8 +225,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h2>Akses Cepat Seluruh Informasi Kurikulum di Satu Tempat</h2>
-                <a href="#dashboard" class="hero-btn">Mulai Sekarang</a>
+                <h2>Portal Informasi Akademik Terpadu</h2>
+                <a href="#menu" class="hero-btn">Lihat Menu</a>
             </div>
         </div>
     </section>
@@ -892,344 +234,159 @@
     <div class="container">
         <div class="search-section">
             <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari menu...">
+                <i class="fas fa-search" style="color: var(--dark-gray); margin-right: 15px;"></i>
+                <input type="text" id="searchInput" placeholder="Cari dokumen, jadwal, atau aplikasi...">
             </div>
         </div>
     </div>
 
-    <div class="container" id="dashboard">
-        <div class="dashboard">
-            <h2 class="section-title">Dashboard Menu</h2>
-            <p class="section-subtitle">Pilih menu di bawah ini untuk mengakses informasi yang diperlukan</p>
-            
-            <div class="categories">
-                <div class="category-title blue">
-                    <i class="fas fa-clipboard-list"></i>
-                    A. Administrasi Kurikulum
-                </div>
-                
-                <div class="cards-grid" id="cardsContainer">
-                    <div class="card blue-border" data-category="administrasi">
-                        <div class="card-icon">
-                            <i class="fas fa-user-check"></i>
-                        </div>
-                        <h3 class="card-title">Absensi Mapel Bahasa Inggris</h3>
-                        <p class="card-subtitle">Rekap dan monitoring kehadiran siswa pada mata pelajaran Bahasa Inggris</p>
-                        <a href="https://smkn1malteng.my.canva.site/bs8mcv8majfq0n7r" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card blue-border" data-category="administrasi">
-                        <div class="card-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h3 class="card-title">Kalender Pendidikan 2025/2026</h3>
-                        <p class="card-subtitle">Kalender akademik tahun ajaran 2025/2026 dengan semua hari penting</p>
-                        <a href="https://alexbahy34-code.github.io/kalender-pendidikan/" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card blue-border" data-category="administrasi">
-                        <div class="card-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3 class="card-title">Pembagian Jam Pelajaran</h3>
-                        <p class="card-subtitle">Alokasi waktu mengajar untuk semua guru dan mata pelajaran</p>
-                        <a href="https://smkn1malteng.my.canva.site/jam-mengajar-smk-negeri-1-maluku-tengah-2025-2026" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card blue-border" data-category="administrasi">
-                        <div class="card-icon">
-                            <i class="fas fa-table"></i>
-                        </div>
-                        <h3 class="card-title">Jadwal Pembelajaran</h3>
-                        <p class="card-subtitle">Jadwal lengkap pembelajaran semua kelas dan guru</p>
-                        <a href="https://smkn1malteng.my.canva.site/copy-of-ui-jadwal-interaktif-smkn-1-maluku-tengah-2025-2026" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card blue-border" data-category="administrasi">
-                        <div class="card-icon">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <h3 class="card-title">Kurikulum Satuan Pendidikan</h3>
-                        <p class="card-subtitle">Dokumen kurikulum operasional satuan pendidikan SMK Negeri 1 Maluku Tengah</p>
-                        <a href="https://docs.google.com/document/d/15mBAtdmtpNIgLSD3c3YG7oiAxdieLiyL/edit?usp=sharing&ouid=109617087844226844570&rtpof=true&sd=true" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card blue-border" data-category="administrasi">
-                        <div class="card-icon">
-                            <i class="fas fa-file-signature"></i>
-                        </div>
-                        <h3 class="card-title">SK Pembagian Tugas Mengajar</h3>
-                        <p class="card-subtitle">Surat Keputusan resmi tentang pembagian tugas mengajar guru</p>
-                        <a href="https://drive.google.com/file/d/1vEb1rlls1-xbd1Vyh4K0hA6N8aZp5zm4/view?usp=sharing" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+    <div class="container" id="menu">
+        
+        <div class="categories cat-admin">
+            <div class="category-header">
+                <i class="fas fa-folder-open" style="font-size: 1.5rem; color: var(--primary-blue);"></i>
+                <div class="category-name">Administrasi Kurikulum</div>
             </div>
-            
-            <div class="categories">
-                <div class="category-title green">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    B. Guru & Kelas
-                </div>
+            <div class="cards-grid">
+                <a href="https://docs.google.com/document/d/15mBAtdmtpNIgLSD3c3YG7oiAxdieLiyL/edit?usp=sharing&ouid=109617087844226844570&rtpof=true&sd=true" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-book"></i></div>
+                    <div class="card-title">Kurikulum Satuan Pendidikan</div>
+                    <div class="card-desc">Dokumen KSP SMK Negeri 1 Maluku Tengah.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
                 
-                <div class="cards-grid">
-                    <div class="card green-border" data-category="guru">
-                        <div class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3 class="card-title">Data Guru Wali</h3>
-                        <p class="card-subtitle">Informasi lengkap mengenai guru wali beserta tanggung jawabnya</p>
-                        <a href="https://smkn1malteng.my.canva.site/dagwxsv7pai" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card green-border" data-category="guru">
-                        <div class="card-icon">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <h3 class="card-title">Tupoksi Guru Wali</h3>
-                        <p class="card-subtitle">Tugas pokok dan fungsi guru wali di SMK Negeri 1 Maluku Tengah</p>
-                        <a href="https://smkn1malteng.my.canva.site/dagwxrsiwr8" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card green-border" data-category="guru">
-                        <div class="card-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3 class="card-title">Aplikasi Guru Wali</h3>
-                        <p class="card-subtitle">Aplikasi pendukung untuk tugas-tugas guru wali</p>
-                        <a href="https://smkn1malteng.my.canva.site/dagztogsf-q" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card green-border" data-category="guru">
-                        <div class="card-icon">
-                            <i class="fas fa-laptop-house"></i>
-                        </div>
-                        <h3 class="card-title">Perangkat Pembelajaran Online</h3>
-                        <p class="card-subtitle">Kumpulan perangkat pembelajaran yang dapat diakses secara online</p>
-                        <a href="https://alexbahy34-code.github.io/perangkat-online-SMK/" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="categories">
-                <div class="category-title yellow">
-                    <i class="fas fa-chart-line"></i>
-                    C. Penilaian & Pelaporan
-                </div>
-                
-                <div class="cards-grid">
-                    <div class="card yellow-border" data-category="penilaian">
-                        <div class="card-icon">
-                            <i class="fas fa-list-ol"></i>
-                        </div>
-                        <h3 class="card-title">Daftar Nilai Semester Ganjil</h3>
-                        <p class="card-subtitle">Rekapitulasi nilai siswa untuk semester ganjil tahun ajaran 2025/2026</p>
-                        <a href="https://sites.google.com/view/daftar-nilai-smkn1/home" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card yellow-border" data-category="penilaian">
-                        <div class="card-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <h3 class="card-title">Dashboard Laporan Penginputan Nilai</h3>
-                        <p class="card-subtitle">Monitoring dan laporan progress penginputan nilai oleh guru</p>
-                        <a href="https://script.google.com/macros/s/AKfycbw4vDCff5BTE2DurxfF1dwKF7JeMTzHKFNWrp9S_jgrcl7ZSqYPnKoBpwnLkQsVMJX7/exec" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="card rapor-special" data-category="penilaian">
-                        <div class="card-icon">
-                            <i class="fas fa-file-invoice"></i>
-                        </div>
-                        <h3 class="card-title">Portal Ledger Rapor Semester Ganjil</h3>
-                        <p class="card-subtitle">Akses lengkap rekap nilai dan rapor siswa semester ganjil tahun ajaran 2025/2026</p>
-                        <a href="https://alexbahy-tech.github.io/Portal-ledger-Rapor-Semester-Ganjil-2025-2026/" target="_blank" class="card-link">
-                            Akses <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+                <a href="https://smkn1malteng.my.canva.site/bs8mcv8majfq0n7r" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="card-title">Absensi Mapel Bhs. Inggris</div>
+                    <div class="card-desc">Rekap kehadiran siswa mapel Bahasa Inggris.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1vEb1rlls1-xbd1Vyh4K0hA6N8aZp5zm4/view?usp=sharing" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-file-signature"></i></div>
+                    <div class="card-title">SK Pembagian Tugas</div>
+                    <div class="card-desc">Surat Keputusan tugas mengajar guru.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://alexbahy34-code.github.io/kalender-pendidikan/" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="card-title">Kalender Pendidikan</div>
+                    <div class="card-desc">Tahun Ajaran 2025/2026.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://smkn1malteng.my.canva.site/jam-mengajar-smk-negeri-1-maluku-tengah-2025-2026" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-clock"></i></div>
+                    <div class="card-title">Pembagian Jam Pelajaran</div>
+                    <div class="card-desc">Alokasi JP per guru dan mapel.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://smkn1malteng.my.canva.site/copy-of-ui-jadwal-interaktif-smkn-1-maluku-tengah-2025-2026" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-table"></i></div>
+                    <div class="card-title">Jadwal Pembelajaran</div>
+                    <div class="card-desc">Jadwal pelajaran interaktif.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
             </div>
         </div>
+
+        <div class="categories cat-guru">
+            <div class="category-header">
+                <i class="fas fa-chalkboard-teacher" style="font-size: 1.5rem; color: var(--secondary-green);"></i>
+                <div class="category-name">Guru & Kelas</div>
+            </div>
+            <div class="cards-grid">
+                <a href="https://smkn1malteng.my.canva.site/dagwxsv7pai" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <div class="card-title">Data Guru Wali</div>
+                    <div class="card-desc">Daftar nama dan kelas guru wali.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://smkn1malteng.my.canva.site/dagwxrsiwr8" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-tasks"></i></div>
+                    <div class="card-title">Tupoksi Guru Wali</div>
+                    <div class="card-desc">Tugas pokok dan fungsi wali kelas.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://smkn1malteng.my.canva.site/dagztogsf-q" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="card-title">Aplikasi Guru Wali</div>
+                    <div class="card-desc">Tools pendukung kerja guru wali.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://alexbahy34-code.github.io/perangkat-online-SMK/" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="card-title">Perangkat Pembelajaran</div>
+                    <div class="card-desc">Akses modul dan bahan ajar online.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="categories cat-nilai">
+            <div class="category-header">
+                <i class="fas fa-chart-line" style="font-size: 1.5rem; color: var(--accent-purple);"></i>
+                <div class="category-name">Penilaian & Pelaporan</div>
+            </div>
+            <div class="cards-grid">
+                <a href="https://sites.google.com/view/daftar-nilai-smkn1/home" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="card-title">Daftar Nilai Sem. Ganjil</div>
+                    <div class="card-desc">Input dan rekap nilai siswa.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="https://script.google.com/macros/s/AKfycbw4vDCff5BTE2DurxfF1dwKF7JeMTzHKFNWrp9S_jgrcl7ZSqYPnKoBpwnLkQsVMJX7/exec" class="card" target="_blank">
+                    <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div class="card-title">Dashboard Penginputan</div>
+                    <div class="card-desc">Monitoring progress input nilai.</div>
+                    <div class="card-arrow">Buka <i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+
     </div>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">SmartKurikulum Center</div>
-                <p>Portal Informasi Guru SMK Negeri 1 Maluku Tengah</p>
-                <div class="footer-links">
-                    <a href="mailto:kurikulumsmkn1malteng@gmail.com">Kontak Kurikulum</a>
-                    <a href="#dashboard">Dashboard</a>
-                    <a href="#administrasi">Administrasi</a>
-                </div>
-                <div class="copyright">
-                    <p>Copyright © 2025 SmartKurikulum Center</p>
-                    <p>Managed by Curriculum and Material Development Team SMK Negeri 1 Maluku Tengah</p>
-                </div>
-            </div>
+            <p>&copy; 2025 SmartKurikulum Center - SMK Negeri 1 Maluku Tengah</p>
         </div>
     </footer>
 
     <script>
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
             const cards = document.querySelectorAll('.card');
-            
-            if (searchTerm === '') {
-                cards.forEach(card => {
-                    card.style.display = 'flex';
-                    card.style.animation = 'slideInUp 0.6s ease-out both';
-                });
-                return;
-            }
-            
             cards.forEach(card => {
-                const title = card.querySelector('.card-title').textContent.toLowerCase();
-                const subtitle = card.querySelector('.card-subtitle').textContent.toLowerCase();
-                const category = card.getAttribute('data-category');
+                const text = card.textContent.toLowerCase();
+                const parentGrid = card.parentElement;
+                const categoryContainer = parentGrid.parentElement;
                 
-                if (title.includes(searchTerm) || subtitle.includes(searchTerm) || 
-                    category.includes(searchTerm)) {
+                if(text.includes(term)) {
                     card.style.display = 'flex';
-                    card.style.animation = 'slideInUp 0.6s ease-out both';
                 } else {
                     card.style.display = 'none';
                 }
             });
-        });
-        
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.zIndex = '100';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.zIndex = '1';
-            });
-        });
-        
-        const heroBtn = document.querySelector('.hero-btn');
-        heroBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const dashboard = document.getElementById('dashboard');
-            dashboard.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 150);
-        });
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const header = document.querySelector('header');
-            header.style.animationPlayState = 'running';
-            
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.visibility = 'visible';
-                }, 300 + index * 100);
-            });
-            
-            document.addEventListener('mousemove', function(e) {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                const bg1 = document.querySelector('.gradient-bg');
-                const bg2 = document.querySelector('.gradient-bg-2');
-                const shapes = document.querySelectorAll('.shape');
-                
-                if (bg1) bg1.style.transform = `rotate(${x * 10 + y * 10}deg)`;
-                if (bg2) bg2.style.transform = `rotate(${-(x * 8 + y * 8)}deg)`;
-                
-                shapes.forEach((shape, index) => {
-                    const speed = 0.5 + index * 0.2;
-                    shape.style.transform = `translate(${x * 20 * speed}px, ${y * 20 * speed}px)`;
-                });
-            });
-            
-            const logo = document.querySelector('.logo img');
-            if (logo) {
-                logo.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05) rotate(3deg)';
+
+            // Sembunyikan judul kategori jika semua card di dalamnya tersembunyi
+            document.querySelectorAll('.categories').forEach(cat => {
+                const visibleCards = cat.querySelectorAll('.card[style="display: flex;"]');
+                // Jika sedang mencari dan tidak ada card yang muncul di kategori ini
+                const allCards = cat.querySelectorAll('.card');
+                let anyVisible = false;
+                allCards.forEach(c => {
+                    if (c.style.display !== 'none') anyVisible = true;
                 });
                 
-                logo.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1) rotate(0deg)';
-                });
-            }
-        });
-        
-        const categoryTitles = document.querySelectorAll('.category-title');
-        categoryTitles.forEach(title => {
-            title.addEventListener('click', function() {
-                const nextSection = this.parentElement;
-                nextSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
+                cat.style.display = anyVisible ? 'block' : 'none';
             });
         });
-        
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'translateY(-5px)';
-        });
-        
-        searchInput.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'translateY(0)';
-        });
-        
-        const logoElement = document.querySelector('.logo');
-        if (logoElement) {
-            logoElement.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                
-                const logoImg = this.querySelector('img');
-                if (logoImg) {
-                    logoImg.style.transform = 'scale(0.9)';
-                    setTimeout(() => {
-                        logoImg.style.transform = 'scale(1)';
-                    }, 200);
-                }
-            });
-        }
     </script>
 </body>
-
 </html>
