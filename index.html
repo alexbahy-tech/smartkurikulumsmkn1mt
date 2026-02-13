@@ -8,778 +8,360 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --grad-start: #0A1628;
-            --grad-mid: #0D2137;
-            --grad-end: #1A0A2E;
-            --cyan-400: #22D3EE;
-            --cyan-500: #06B6D4;
-            --cyan-600: #0891B2;
-            --blue-400: #60A5FA;
-            --blue-500: #3B82F6;
-            --blue-600: #2563EB;
-            --indigo-400: #818CF8;
-            --indigo-500: #6366F1;
-            --violet-400: #A78BFA;
-            --violet-500: #8B5CF6;
-            --fuchsia-400: #E879F9;
-            --fuchsia-500: #D946EF;
-            --emerald-400: #34D399;
-            --emerald-500: #10B981;
-            --amber-400: #FBBF24;
-            --amber-500: #F59E0B;
-            --rose-400: #FB7185;
-            --rose-500: #F43F5E;
-            --slate-900: #0F172A;
-            --slate-800: #1E293B;
-            --slate-700: #334155;
-            --slate-600: #475569;
-            --slate-500: #64748B;
-            --slate-400: #94A3B8;
-            --slate-300: #CBD5E1;
-            --slate-200: #E2E8F0;
-            --slate-100: #F1F5F9;
-            --slate-50:  #F8FAFC;
-            --white: #FFFFFF;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-            --shadow-md: 0 4px 14px rgba(0,0,0,0.06);
-            --shadow-lg: 0 12px 36px rgba(0,0,0,0.08);
-            --shadow-xl: 0 24px 56px rgba(0,0,0,0.12);
-            --shadow-glow-cyan: 0 0 30px rgba(6,182,212,0.25);
-            --shadow-glow-blue: 0 0 30px rgba(59,130,246,0.25);
-            --shadow-glow-violet: 0 0 30px rgba(139,92,246,0.25);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --radius-2xl: 32px;
-            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --grad-start:#0A1628;--grad-mid:#0D2137;--grad-end:#1A0A2E;
+            --cyan-400:#22D3EE;--cyan-500:#06B6D4;--cyan-600:#0891B2;
+            --blue-400:#60A5FA;--blue-500:#3B82F6;--blue-600:#2563EB;
+            --indigo-400:#818CF8;--indigo-500:#6366F1;
+            --violet-400:#A78BFA;--violet-500:#8B5CF6;
+            --fuchsia-400:#E879F9;--fuchsia-500:#D946EF;
+            --emerald-400:#34D399;--emerald-500:#10B981;
+            --amber-400:#FBBF24;--amber-500:#F59E0B;
+            --rose-400:#FB7185;--rose-500:#F43F5E;
+            --slate-900:#0F172A;--slate-800:#1E293B;--slate-700:#334155;
+            --slate-600:#475569;--slate-500:#64748B;--slate-400:#94A3B8;
+            --slate-300:#CBD5E1;--slate-200:#E2E8F0;--slate-100:#F1F5F9;
+            --slate-50:#F8FAFC;--white:#FFFFFF;
+            --shadow-xl:0 24px 56px rgba(0,0,0,0.12);
+            --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;--radius-2xl:32px;
+            --transition:0.35s cubic-bezier(0.4,0,0.2,1);
         }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;scroll-padding-top:80px}
+        body{font-family:'DM Sans',sans-serif;color:var(--slate-800);background:var(--slate-50);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
+        .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            color: var(--slate-800);
-            background: var(--slate-50);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        img { max-width: 100%; display: block; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-        .mesh-bg {
-            position: fixed; inset: 0; z-index: 0;
-            pointer-events: none; overflow: hidden;
-        }
-        .mesh-bg .orb {
-            position: absolute; border-radius: 50%;
-            filter: blur(100px); opacity: 0.12;
-            animation: orbFloat 20s infinite ease-in-out;
-        }
-        .mesh-bg .orb-1 {
-            width: 600px; height: 600px;
-            background: linear-gradient(135deg, var(--cyan-400), var(--blue-500));
-            top: -15%; left: -10%; animation-duration: 22s;
-        }
-        .mesh-bg .orb-2 {
-            width: 500px; height: 500px;
-            background: linear-gradient(135deg, var(--violet-400), var(--fuchsia-400));
-            bottom: -10%; right: -8%; animation-duration: 18s; animation-delay: -6s;
-        }
-        .mesh-bg .orb-3 {
-            width: 400px; height: 400px;
-            background: linear-gradient(135deg, var(--emerald-400), var(--cyan-500));
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            animation-duration: 25s; animation-delay: -10s;
-        }
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(60px, -40px) scale(1.15); }
-            50% { transform: translate(-30px, 50px) scale(0.9); }
-            75% { transform: translate(40px, 20px) scale(1.08); }
-        }
+        /* MESH BG */
+        .mesh-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+        .mesh-bg .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.12;animation:orbFloat 20s infinite ease-in-out}
+        .mesh-bg .orb-1{width:600px;height:600px;background:linear-gradient(135deg,var(--cyan-400),var(--blue-500));top:-15%;left:-10%;animation-duration:22s}
+        .mesh-bg .orb-2{width:500px;height:500px;background:linear-gradient(135deg,var(--violet-400),var(--fuchsia-400));bottom:-10%;right:-8%;animation-duration:18s;animation-delay:-6s}
+        .mesh-bg .orb-3{width:400px;height:400px;background:linear-gradient(135deg,var(--emerald-400),var(--cyan-500));top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:25s;animation-delay:-10s}
+        @keyframes orbFloat{0%,100%{transform:translate(0,0)scale(1)}25%{transform:translate(60px,-40px)scale(1.15)}50%{transform:translate(-30px,50px)scale(.9)}75%{transform:translate(40px,20px)scale(1.08)}}
 
         /* NAVBAR */
-        .navbar {
-            position: sticky; top: 0; z-index: 1000;
-            background: rgba(255,255,255,0.82);
-            backdrop-filter: blur(24px) saturate(1.8);
-            -webkit-backdrop-filter: blur(24px) saturate(1.8);
-            border-bottom: 1px solid rgba(226,232,240,0.6);
-            transition: all var(--transition);
-        }
-        .navbar.scrolled {
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            background: rgba(255,255,255,0.92);
-        }
-        .navbar-inner {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 24px; height: 72px; max-width: 1200px; margin: 0 auto;
-        }
-        .navbar-brand {
-            display: flex; align-items: center; gap: 12px;
-        }
-        .navbar-brand .brand-logo {
-            width: 46px; height: 46px; border-radius: 12px;
-            object-fit: contain; flex-shrink: 0;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
-            transition: transform var(--transition);
-        }
-        .navbar-brand:hover .brand-logo { transform: scale(1.06); }
-        .navbar-brand .brand-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem; font-weight: 700;
-            background: linear-gradient(135deg, var(--slate-900), var(--blue-600));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; line-height: 1.2;
-        }
-        .navbar-brand .brand-text span {
-            font-size: 0.72rem; color: var(--slate-500); font-weight: 400;
-        }
-        .nav-links {
-            display: flex; align-items: center; gap: 4px; list-style: none;
-        }
-        .nav-links a {
-            padding: 8px 16px; font-size: 0.88rem; font-weight: 500;
-            color: var(--slate-600); border-radius: var(--radius-sm);
-            transition: all var(--transition);
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--blue-600);
-            background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06));
-        }
-        .hamburger {
-            display: none; flex-direction: column; gap: 5px;
-            background: none; border: none; cursor: pointer;
-            padding: 8px; z-index: 1001;
-        }
-        .hamburger span {
-            display: block; width: 22px; height: 2px;
-            background: var(--slate-700); border-radius: 2px;
-            transition: all var(--transition);
-        }
-        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.82);backdrop-filter:blur(24px)saturate(1.8);-webkit-backdrop-filter:blur(24px)saturate(1.8);border-bottom:1px solid rgba(226,232,240,0.6);transition:all var(--transition)}
+        .navbar.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.06);background:rgba(255,255,255,0.92)}
+        .navbar-inner{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:72px;max-width:1200px;margin:0 auto}
+        .navbar-brand{display:flex;align-items:center;gap:12px}
+        .navbar-brand .brand-logo{width:46px;height:46px;border-radius:12px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.1));transition:transform var(--transition)}
+        .navbar-brand:hover .brand-logo{transform:scale(1.06)}
+        .navbar-brand .brand-text h1{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;background:linear-gradient(135deg,var(--slate-900),var(--blue-600));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2}
+        .navbar-brand .brand-text span{font-size:0.72rem;color:var(--slate-500);font-weight:400}
+        .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+        .nav-links a{padding:8px 16px;font-size:0.88rem;font-weight:500;color:var(--slate-600);border-radius:var(--radius-sm);transition:all var(--transition)}
+        .nav-links a:hover,.nav-links a.active{color:var(--blue-600);background:linear-gradient(135deg,rgba(59,130,246,0.06),rgba(139,92,246,0.06))}
+        .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1001}
+        .hamburger span{display:block;width:22px;height:2px;background:var(--slate-700);border-radius:2px;transition:all var(--transition)}
+        .hamburger.open span:nth-child(1){transform:translateY(7px)rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-7px)rotate(-45deg)}
 
         /* HERO */
-        .hero {
-            position: relative; width: 100%; min-height: 580px;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
-        }
-        .hero-bg { position: absolute; inset: 0; z-index: 0; }
-        .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
-        .hero-bg::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg,
-                rgba(10,22,40,0.88) 0%, rgba(26,10,46,0.75) 40%,
-                rgba(8,55,80,0.80) 70%, rgba(10,22,40,0.92) 100%);
-        }
-        .hero-aurora {
-            position: absolute; inset: 0; z-index: 1; overflow: hidden; opacity: 0.4;
-        }
-        .hero-aurora::before {
-            content: ''; position: absolute; width: 200%; height: 200%;
-            top: -50%; left: -50%;
-            background: conic-gradient(from 0deg at 50% 50%,
-                transparent 0deg, rgba(34,211,238,0.15) 60deg, transparent 120deg,
-                rgba(139,92,246,0.12) 180deg, transparent 240deg,
-                rgba(52,211,153,0.1) 300deg, transparent 360deg);
-            animation: auroraRotate 30s linear infinite;
-        }
-        @keyframes auroraRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .hero-bg::before {
-            content: ''; position: absolute; inset: 0; z-index: 1;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-            background-size: 60px 60px;
-        }
-        .hero-content {
-            position: relative; z-index: 2; text-align: center;
-            padding: 80px 24px 60px; max-width: 780px;
-        }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(139,92,246,0.12));
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(12px); padding: 7px 20px;
-            border-radius: 50px; font-size: 0.8rem;
-            color: rgba(255,255,255,0.85); margin-bottom: 28px;
-            animation: fadeInDown 0.7s ease-out;
-        }
-        .hero-badge i {
-            font-size: 0.55rem;
-            background: linear-gradient(135deg, var(--cyan-400), var(--emerald-400));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .hero-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.4rem; font-weight: 800; color: var(--white);
-            line-height: 1.12; margin-bottom: 18px; animation: fadeInUp 0.7s ease-out;
-        }
-        .hero-content h2 .text-gradient {
-            background: linear-gradient(135deg, var(--cyan-400), var(--blue-400), var(--violet-400), var(--fuchsia-400));
-            background-size: 300% 300%;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            animation: gradientShift 6s ease-in-out infinite;
-        }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .hero-content p {
-            font-size: 1.1rem; color: rgba(255,255,255,0.65);
-            max-width: 560px; margin: 0 auto 36px; line-height: 1.7;
-            animation: fadeInUp 0.7s 0.1s ease-out both;
-        }
-        .hero-actions {
-            display: flex; align-items: center; justify-content: center;
-            gap: 14px; flex-wrap: wrap; animation: fadeInUp 0.7s 0.2s ease-out both;
-        }
+        .hero{position:relative;width:100%;min-height:580px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .hero-bg{position:absolute;inset:0;z-index:0}
+        .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+        .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,22,40,0.88)0%,rgba(26,10,46,0.75)40%,rgba(8,55,80,0.80)70%,rgba(10,22,40,0.92)100%)}
+        .hero-aurora{position:absolute;inset:0;z-index:1;overflow:hidden;opacity:0.4}
+        .hero-aurora::before{content:'';position:absolute;width:200%;height:200%;top:-50%;left:-50%;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(34,211,238,0.15)60deg,transparent 120deg,rgba(139,92,246,0.12)180deg,transparent 240deg,rgba(52,211,153,0.1)300deg,transparent 360deg);animation:auroraRotate 30s linear infinite}
+        @keyframes auroraRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        .hero-bg::before{content:'';position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025)1px,transparent 1px);background-size:60px 60px}
+        .hero-content{position:relative;z-index:2;text-align:center;padding:80px 24px 60px;max-width:780px}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(34,211,238,0.12),rgba(139,92,246,0.12));border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(12px);padding:7px 20px;border-radius:50px;font-size:0.8rem;color:rgba(255,255,255,0.85);margin-bottom:28px;animation:fadeInDown 0.7s ease-out}
+        .hero-badge i{font-size:0.55rem;background:linear-gradient(135deg,var(--cyan-400),var(--emerald-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-content h2{font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:800;color:var(--white);line-height:1.12;margin-bottom:18px;animation:fadeInUp 0.7s ease-out}
+        .hero-content h2 .text-gradient{background:linear-gradient(135deg,var(--cyan-400),var(--blue-400),var(--violet-400),var(--fuchsia-400));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease-in-out infinite}
+        @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+        .hero-content p{font-size:1.1rem;color:rgba(255,255,255,0.65);max-width:560px;margin:0 auto 36px;line-height:1.7;animation:fadeInUp 0.7s 0.1s ease-out both}
+        .hero-actions{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;animation:fadeInUp 0.7s 0.2s ease-out both}
 
         /* BUTTONS */
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 13px 30px; border-radius: 50px; font-size: 0.95rem;
-            font-weight: 600; cursor: pointer; border: none;
-            transition: all var(--transition); font-family: inherit;
-            position: relative; overflow: hidden;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--cyan-500), var(--blue-500), var(--indigo-500));
-            background-size: 200% 200%; color: var(--white);
-            box-shadow: 0 4px 20px rgba(59,130,246,0.35);
-            animation: gradientShift 4s ease-in-out infinite;
-        }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59,130,246,0.5); }
-        .btn-secondary {
-            background: rgba(255,255,255,0.08); color: var(--white);
-            border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(8px);
-        }
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3);
-            transform: translateY(-3px);
-        }
-        .btn-white {
-            background: var(--white); color: var(--blue-600);
-            font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:50px;font-size:0.95rem;font-weight:600;cursor:pointer;border:none;transition:all var(--transition);font-family:inherit;position:relative;overflow:hidden}
+        .btn-primary{background:linear-gradient(135deg,var(--cyan-500),var(--blue-500),var(--indigo-500));background-size:200% 200%;color:var(--white);box-shadow:0 4px 20px rgba(59,130,246,0.35);animation:gradientShift 4s ease-in-out infinite}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(59,130,246,0.5)}
+        .btn-secondary{background:rgba(255,255,255,0.08);color:var(--white);border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(8px)}
+        .btn-secondary:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);transform:translateY(-3px)}
+        .btn-white{background:var(--white);color:var(--blue-600);font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+        .btn-white:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
 
         /* HERO STATS */
-        .hero-stats-bar {
-            position: relative; z-index: 2;
-            background: linear-gradient(180deg, var(--grad-start), rgba(15,23,42,0.0));
-            padding: 0 24px 60px;
-        }
-        .hero-stats {
-            display: flex; justify-content: center; gap: 48px;
-            animation: fadeInUp 0.7s 0.35s ease-out both;
-        }
-        .hero-stat { text-align: center; }
-        .hero-stat .num {
-            font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700;
-            background: linear-gradient(135deg, var(--cyan-400), var(--blue-400));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .hero-stat .label { font-size: 0.78rem; color: var(--slate-500); margin-top: 2px; }
-        .hero-divider {
-            width: 1px; background: linear-gradient(180deg, var(--slate-600), transparent);
-            align-self: stretch;
-        }
+        .hero-stats-bar{position:relative;z-index:2;background:linear-gradient(180deg,var(--grad-start),rgba(15,23,42,0.0));padding:0 24px 60px}
+        .hero-stats{display:flex;justify-content:center;gap:48px;animation:fadeInUp 0.7s 0.35s ease-out both}
+        .hero-stat{text-align:center}
+        .hero-stat .num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;background:linear-gradient(135deg,var(--cyan-400),var(--blue-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-stat .label{font-size:0.78rem;color:var(--slate-500);margin-top:2px}
+        .hero-divider{width:1px;background:linear-gradient(180deg,var(--slate-600),transparent);align-self:stretch}
 
         /* SEARCH */
-        .search-section {
-            margin-top: -28px; position: relative; z-index: 10;
-            padding: 0 24px; margin-bottom: 40px;
-        }
-        .search-bar {
-            max-width: 640px; margin: 0 auto; background: var(--white);
-            border-radius: 50px; display: flex; align-items: center;
-            padding: 6px 8px 6px 24px; box-shadow: var(--shadow-xl);
-            border: 2px solid transparent; transition: all var(--transition);
-        }
-        .search-bar:focus-within {
-            border-color: var(--blue-500);
-            box-shadow: var(--shadow-xl), 0 0 0 4px rgba(59,130,246,0.08);
-        }
-        .search-bar input {
-            flex: 1; border: none; outline: none; font-size: 0.95rem;
-            font-family: inherit; color: var(--slate-800);
-            background: transparent; padding: 10px 0;
-        }
-        .search-bar input::placeholder { color: var(--slate-400); }
-        .search-btn {
-            width: 44px; height: 44px; border-radius: 50%; border: none;
-            background: linear-gradient(135deg, var(--cyan-500), var(--blue-500));
-            color: var(--white); display: flex; align-items: center; justify-content: center;
-            cursor: pointer; flex-shrink: 0; transition: all var(--transition);
-            box-shadow: 0 4px 12px rgba(6,182,212,0.3);
-        }
-        .search-btn:hover { transform: scale(1.08); }
+        .search-section{margin-top:-28px;position:relative;z-index:10;padding:0 24px;margin-bottom:40px}
+        .search-bar{max-width:640px;margin:0 auto;background:var(--white);border-radius:50px;display:flex;align-items:center;padding:6px 8px 6px 24px;box-shadow:var(--shadow-xl);border:2px solid transparent;transition:all var(--transition)}
+        .search-bar:focus-within{border-color:var(--blue-500);box-shadow:var(--shadow-xl),0 0 0 4px rgba(59,130,246,0.08)}
+        .search-bar input{flex:1;border:none;outline:none;font-size:0.95rem;font-family:inherit;color:var(--slate-800);background:transparent;padding:10px 0}
+        .search-bar input::placeholder{color:var(--slate-400)}
+        .search-btn{width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--cyan-500),var(--blue-500));color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all var(--transition);box-shadow:0 4px 12px rgba(6,182,212,0.3)}
+        .search-btn:hover{transform:scale(1.08)}
 
         /* SECTIONS */
-        .section { padding: 72px 0; position: relative; z-index: 1; }
-        .section-header { margin-bottom: 44px; }
-        .section-label {
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.1em; margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--cyan-500), var(--blue-500));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .section-label::before {
-            content: ''; width: 24px; height: 3px; border-radius: 2px;
-            background: linear-gradient(90deg, var(--cyan-400), var(--blue-500));
-        }
-        .section-title {
-            font-family: 'Playfair Display', serif; font-size: 2.1rem;
-            font-weight: 700; color: var(--slate-900); line-height: 1.2;
-        }
-        .section-subtitle {
-            font-size: 1rem; color: var(--slate-500); margin-top: 10px; max-width: 540px;
-        }
+        .section{padding:72px 0;position:relative;z-index:1}
+        .section-header{margin-bottom:44px}
+        .section-label{display:inline-flex;align-items:center;gap:10px;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;background:linear-gradient(135deg,var(--cyan-500),var(--blue-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .section-label::before{content:'';width:24px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--cyan-400),var(--blue-500))}
+        .section-title{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--slate-900);line-height:1.2}
+        .section-subtitle{font-size:1rem;color:var(--slate-500);margin-top:10px;max-width:540px}
 
-        /* FEATURE CARDS */
-        .features-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        /* ══════ MAIN TABS ══════ */
+        .main-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
+        .main-tab-btn{
+            padding:10px 22px;border:1px solid var(--slate-200);border-radius:50px;
+            background:var(--white);color:var(--slate-500);font-size:0.88rem;
+            font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit;
+            display:inline-flex;align-items:center;gap:8px;
         }
-        .feature-group {
-            background: var(--white); border-radius: var(--radius-xl);
-            padding: 0; border: 1px solid var(--slate-200);
-            transition: all var(--transition); position: relative; overflow: hidden;
+        .main-tab-btn i{font-size:0.8rem}
+        .main-tab-btn:hover{color:var(--blue-600);border-color:var(--blue-400);background:rgba(59,130,246,0.04)}
+        .main-tab-btn.active{
+            background:linear-gradient(135deg,var(--cyan-500),var(--blue-500),var(--indigo-500));
+            color:var(--white);border-color:transparent;
+            box-shadow:0 4px 16px rgba(59,130,246,0.3);
         }
-        .feature-group::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        .main-tab-panel{display:none}
+        .main-tab-panel.active{display:block;animation:tabFadeIn 0.45s ease}
+        @keyframes tabFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+        /* FEATURES */
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .feature-group{background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--slate-200);transition:all var(--transition);position:relative;overflow:hidden}
+        .feature-group::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+        .feature-group.admin::before{background:linear-gradient(90deg,var(--cyan-400),var(--blue-500),var(--indigo-400))}
+        .feature-group.guru::before{background:linear-gradient(90deg,var(--blue-400),var(--violet-400),var(--fuchsia-400))}
+        .feature-group.nilai::before{background:linear-gradient(90deg,var(--amber-400),var(--rose-400),var(--fuchsia-400))}
+        .feature-group:hover{transform:translateY(-6px);border-color:transparent}
+        .feature-group.admin:hover{box-shadow:0 16px 40px rgba(6,182,212,0.12),0 0 0 1px rgba(6,182,212,0.15)}
+        .feature-group.guru:hover{box-shadow:0 16px 40px rgba(139,92,246,0.12),0 0 0 1px rgba(139,92,246,0.15)}
+        .feature-group.nilai:hover{box-shadow:0 16px 40px rgba(244,63,94,0.1),0 0 0 1px rgba(244,63,94,0.15)}
+        .feature-group-header{padding:28px 28px 20px}
+        .feature-group-icon{width:56px;height:56px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+        .admin .feature-group-icon{background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(59,130,246,0.1));color:var(--cyan-600)}
+        .guru .feature-group-icon{background:linear-gradient(135deg,rgba(96,165,250,0.1),rgba(139,92,246,0.1));color:var(--violet-500)}
+        .nilai .feature-group-icon{background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(244,63,94,0.1));color:var(--rose-500)}
+        .feature-group h3{font-size:1.2rem;font-weight:700;color:var(--slate-900);margin-bottom:6px}
+        .feature-group>.feature-group-header>p{font-size:0.88rem;color:var(--slate-500);line-height:1.6}
+        .feature-list{display:flex;flex-direction:column;gap:2px;padding:4px 12px 12px}
+        .feature-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--radius-md);transition:all var(--transition);cursor:pointer;border:1px solid transparent}
+        .feature-item:hover{background:var(--slate-50);border-color:var(--slate-200);transform:translateX(4px)}
+        .feature-item .fi-icon{width:38px;height:38px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+        .admin .feature-item .fi-icon{background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(59,130,246,0.08));color:var(--cyan-600)}
+        .guru .feature-item .fi-icon{background:linear-gradient(135deg,rgba(96,165,250,0.08),rgba(139,92,246,0.08));color:var(--indigo-500)}
+        .nilai .feature-item .fi-icon{background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(244,63,94,0.08));color:var(--amber-500)}
+        .feature-item .fi-text h4{font-size:0.88rem;font-weight:600;color:var(--slate-800);line-height:1.3}
+        .feature-item .fi-text span{font-size:0.76rem;color:var(--slate-400)}
+        .feature-item .fi-arrow{margin-left:auto;color:var(--slate-300);font-size:0.75rem;transition:all var(--transition)}
+        .admin .feature-item:hover .fi-arrow{color:var(--cyan-500);transform:translateX(3px)}
+        .guru .feature-item:hover .fi-arrow{color:var(--violet-500);transform:translateX(3px)}
+        .nilai .feature-item:hover .fi-arrow{color:var(--rose-500);transform:translateX(3px)}
+
+        /* ══════ VISI MISI TAB PANEL ══════ */
+        .vm-panel{max-width:1200px}
+        .vm-hero-bar{
+            background:linear-gradient(135deg,#0a1628,#0d2840,#1a0a2e);
+            border-radius:var(--radius-xl);padding:40px 44px;margin-bottom:28px;
+            position:relative;overflow:hidden;
         }
-        .feature-group.admin::before {
-            background: linear-gradient(90deg, var(--cyan-400), var(--blue-500), var(--indigo-400));
+        .vm-hero-bar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 300px 200px at 80% 20%,rgba(34,211,238,0.12),transparent),radial-gradient(ellipse 250px 200px at 20% 80%,rgba(240,165,0,0.1),transparent)}
+        .vm-hero-bar::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02)1px,transparent 1px);background-size:40px 40px}
+        .vm-hero-inner{position:relative;z-index:1;display:flex;align-items:center;gap:28px}
+        .vm-hero-logo{width:80px;height:80px;flex-shrink:0}
+        .vm-hero-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 16px rgba(240,165,0,0.15))}
+        .vm-hero-text h3{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:6px}
+        .vm-hero-text p{color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.6}
+
+        .vm-sub-tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
+        .vm-sub-btn{
+            padding:9px 20px;border:1px solid var(--slate-200);border-radius:10px;
+            background:var(--white);color:var(--slate-500);font-size:0.84rem;
+            font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit;
         }
-        .feature-group.guru::before {
-            background: linear-gradient(90deg, var(--blue-400), var(--violet-400), var(--fuchsia-400));
+        .vm-sub-btn:hover{color:var(--amber-500);border-color:var(--amber-400)}
+        .vm-sub-btn.active{background:linear-gradient(135deg,#f0a500,#ff6b35);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(240,165,0,0.25)}
+        .vm-sub-panel{display:none}
+        .vm-sub-panel.active{display:block;animation:tabFadeIn 0.4s ease}
+
+        /* VM Cards */
+        .vm-visi-card{
+            background:linear-gradient(135deg,rgba(10,36,99,0.06),rgba(240,165,0,0.04));
+            border:1px solid var(--slate-200);border-radius:var(--radius-lg);
+            padding:36px;position:relative;overflow:hidden;
         }
-        .feature-group.nilai::before {
-            background: linear-gradient(90deg, var(--amber-400), var(--rose-400), var(--fuchsia-400));
+        .vm-visi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f0a500,#ff6b35,var(--blue-500))}
+        .vm-visi-icon{width:48px;height:48px;border-radius:12px;margin-bottom:16px;background:linear-gradient(135deg,rgba(240,165,0,0.1),rgba(255,107,53,0.08));display:flex;align-items:center;justify-content:center;font-size:22px}
+        .vm-visi-text{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;line-height:1.65;color:var(--slate-800)}
+        .vm-visi-text em{font-style:normal;background:linear-gradient(135deg,#f0a500,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800}
+
+        .vm-misi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+        .vm-misi-card{
+            background:var(--white);border:1px solid var(--slate-200);border-radius:var(--radius-lg);
+            padding:24px;transition:all 0.3s;
         }
-        .feature-group:hover {
-            transform: translateY(-6px); border-color: transparent;
+        .vm-misi-card:hover{transform:translateY(-4px);border-color:rgba(240,165,0,0.3);box-shadow:0 12px 32px rgba(0,0,0,0.06)}
+        .vm-misi-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;background:linear-gradient(135deg,rgba(240,165,0,0.2),rgba(255,107,53,0.1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px}
+        .vm-misi-card h3{font-size:0.92rem;font-weight:700;margin-bottom:6px;color:var(--slate-800)}
+        .vm-misi-card p{font-size:0.82rem;color:var(--slate-500);line-height:1.7}
+
+        .vm-tujuan-list{display:flex;flex-direction:column;gap:12px}
+        .vm-tujuan-item{
+            display:flex;gap:14px;align-items:flex-start;
+            background:var(--white);border:1px solid var(--slate-200);
+            border-radius:var(--radius-md);padding:20px;transition:all 0.3s;
         }
-        .feature-group.admin:hover {
-            box-shadow: 0 16px 40px rgba(6,182,212,0.12), 0 0 0 1px rgba(6,182,212,0.15);
-        }
-        .feature-group.guru:hover {
-            box-shadow: 0 16px 40px rgba(139,92,246,0.12), 0 0 0 1px rgba(139,92,246,0.15);
-        }
-        .feature-group.nilai:hover {
-            box-shadow: 0 16px 40px rgba(244,63,94,0.1), 0 0 0 1px rgba(244,63,94,0.15);
-        }
-        .feature-group-header { padding: 28px 28px 20px; }
-        .feature-group-icon {
-            width: 56px; height: 56px; border-radius: var(--radius-md);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; margin-bottom: 16px; position: relative;
-        }
-        .admin .feature-group-icon {
-            background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.1));
-            color: var(--cyan-600);
-        }
-        .guru .feature-group-icon {
-            background: linear-gradient(135deg, rgba(96,165,250,0.1), rgba(139,92,246,0.1));
-            color: var(--violet-500);
-        }
-        .nilai .feature-group-icon {
-            background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(244,63,94,0.1));
-            color: var(--rose-500);
-        }
-        .feature-group h3 { font-size: 1.2rem; font-weight: 700; color: var(--slate-900); margin-bottom: 6px; }
-        .feature-group > .feature-group-header > p { font-size: 0.88rem; color: var(--slate-500); line-height: 1.6; }
-        .feature-list { display: flex; flex-direction: column; gap: 2px; padding: 4px 12px 12px; }
-        .feature-item {
-            display: flex; align-items: center; gap: 12px;
-            padding: 12px 16px; border-radius: var(--radius-md);
-            transition: all var(--transition); cursor: pointer;
-            border: 1px solid transparent;
-        }
-        .feature-item:hover {
-            background: var(--slate-50); border-color: var(--slate-200);
-            transform: translateX(4px);
-        }
-        .feature-item .fi-icon {
-            width: 38px; height: 38px; border-radius: var(--radius-sm);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 15px; flex-shrink: 0;
-        }
-        .admin .feature-item .fi-icon {
-            background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(59,130,246,0.08));
-            color: var(--cyan-600);
-        }
-        .guru .feature-item .fi-icon {
-            background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(139,92,246,0.08));
-            color: var(--indigo-500);
-        }
-        .nilai .feature-item .fi-icon {
-            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(244,63,94,0.08));
-            color: var(--amber-500);
-        }
-        .feature-item .fi-text h4 { font-size: 0.88rem; font-weight: 600; color: var(--slate-800); line-height: 1.3; }
-        .feature-item .fi-text span { font-size: 0.76rem; color: var(--slate-400); }
-        .feature-item .fi-arrow {
-            margin-left: auto; color: var(--slate-300); font-size: 0.75rem;
-            transition: all var(--transition);
-        }
-        .admin .feature-item:hover .fi-arrow { color: var(--cyan-500); transform: translateX(3px); }
-        .guru .feature-item:hover .fi-arrow { color: var(--violet-500); transform: translateX(3px); }
-        .nilai .feature-item:hover .fi-arrow { color: var(--rose-500); transform: translateX(3px); }
+        .vm-tujuan-item:hover{border-color:rgba(240,165,0,0.3);transform:translateX(4px);box-shadow:0 8px 24px rgba(0,0,0,0.04)}
+        .vm-tujuan-icon{width:40px;height:40px;min-width:40px;border-radius:10px;background:linear-gradient(135deg,rgba(240,165,0,0.1),rgba(255,107,53,0.06));display:flex;align-items:center;justify-content:center;font-size:17px}
+        .vm-tujuan-item h4{font-size:0.88rem;font-weight:600;margin-bottom:4px;color:var(--slate-800)}
+        .vm-tujuan-item p{font-size:0.82rem;color:var(--slate-500)}
 
         /* KEUNGGULAN */
-        .advantages-section {
-            background: linear-gradient(180deg, var(--white) 0%, var(--slate-50) 100%);
-            border-top: 1px solid var(--slate-200);
-            border-bottom: 1px solid var(--slate-200);
-            position: relative; overflow: hidden;
-        }
-        .advantages-section::before {
-            content: ''; position: absolute; width: 500px; height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(34,211,238,0.06), transparent 70%);
-            top: -200px; left: -100px; pointer-events: none;
-        }
-        .advantages-section::after {
-            content: ''; position: absolute; width: 400px; height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(139,92,246,0.06), transparent 70%);
-            bottom: -150px; right: -80px; pointer-events: none;
-        }
-        .advantages-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 24px; position: relative; z-index: 1;
-        }
-        .adv-card {
-            background: var(--white); border-radius: var(--radius-lg);
-            padding: 32px 24px; border: 1px solid var(--slate-200);
-            text-align: center; transition: all var(--transition);
-        }
-        .adv-card:hover { transform: translateY(-8px); }
-        .adv-card:nth-child(1):hover { box-shadow: 0 16px 40px rgba(6,182,212,0.12); }
-        .adv-card:nth-child(2):hover { box-shadow: 0 16px 40px rgba(59,130,246,0.12); }
-        .adv-card:nth-child(3):hover { box-shadow: 0 16px 40px rgba(16,185,129,0.12); }
-        .adv-card:nth-child(4):hover { box-shadow: 0 16px 40px rgba(139,92,246,0.12); }
-        .adv-icon {
-            width: 64px; height: 64px; border-radius: 18px;
-            margin: 0 auto 20px; display: flex; align-items: center;
-            justify-content: center; font-size: 26px; position: relative;
-        }
-        .adv-card:nth-child(1) .adv-icon { background: linear-gradient(135deg, rgba(6,182,212,0.12), rgba(34,211,238,0.2)); color: var(--cyan-500); }
-        .adv-card:nth-child(2) .adv-icon { background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(96,165,250,0.2)); color: var(--blue-500); }
-        .adv-card:nth-child(3) .adv-icon { background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(52,211,153,0.2)); color: var(--emerald-500); }
-        .adv-card:nth-child(4) .adv-icon { background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(167,139,250,0.2)); color: var(--violet-500); }
-        .adv-card h4 { font-size: 1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 8px; }
-        .adv-card p { font-size: 0.84rem; color: var(--slate-500); line-height: 1.65; }
+        .advantages-section{background:linear-gradient(180deg,var(--white),var(--slate-50));border-top:1px solid var(--slate-200);border-bottom:1px solid var(--slate-200);position:relative;overflow:hidden}
+        .advantages-section::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,0.06),transparent 70%);top:-200px;left:-100px;pointer-events:none}
+        .advantages-section::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.06),transparent 70%);bottom:-150px;right:-80px;pointer-events:none}
+        .advantages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:1}
+        .adv-card{background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;border:1px solid var(--slate-200);text-align:center;transition:all var(--transition)}
+        .adv-card:hover{transform:translateY(-8px)}
+        .adv-card:nth-child(1):hover{box-shadow:0 16px 40px rgba(6,182,212,0.12)}.adv-card:nth-child(2):hover{box-shadow:0 16px 40px rgba(59,130,246,0.12)}.adv-card:nth-child(3):hover{box-shadow:0 16px 40px rgba(16,185,129,0.12)}.adv-card:nth-child(4):hover{box-shadow:0 16px 40px rgba(139,92,246,0.12)}
+        .adv-icon{width:64px;height:64px;border-radius:18px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:26px}
+        .adv-card:nth-child(1) .adv-icon{background:linear-gradient(135deg,rgba(6,182,212,0.12),rgba(34,211,238,0.2));color:var(--cyan-500)}
+        .adv-card:nth-child(2) .adv-icon{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(96,165,250,0.2));color:var(--blue-500)}
+        .adv-card:nth-child(3) .adv-icon{background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(52,211,153,0.2));color:var(--emerald-500)}
+        .adv-card:nth-child(4) .adv-icon{background:linear-gradient(135deg,rgba(139,92,246,0.12),rgba(167,139,250,0.2));color:var(--violet-500)}
+        .adv-card h4{font-size:1rem;font-weight:700;color:var(--slate-900);margin-bottom:8px}
+        .adv-card p{font-size:0.84rem;color:var(--slate-500);line-height:1.65}
 
         /* CTA */
-        .cta-section { padding: 40px 0 80px; }
-        .cta-banner {
-            border-radius: var(--radius-2xl); padding: 64px 48px;
-            text-align: center; position: relative; overflow: hidden;
-            background: linear-gradient(135deg, #0A1628, #0D2840, #1A0A2E, #0E1A3A);
-            background-size: 400% 400%; animation: gradientShift 8s ease-in-out infinite;
-        }
-        .cta-banner::before {
-            content: ''; position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse 350px 250px at 75% 20%, rgba(34,211,238,0.2), transparent),
-                radial-gradient(ellipse 300px 250px at 25% 80%, rgba(139,92,246,0.18), transparent),
-                radial-gradient(ellipse 200px 200px at 50% 50%, rgba(96,165,250,0.1), transparent);
-        }
-        .cta-banner::after {
-            content: ''; position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        .cta-banner h3 {
-            font-family: 'Playfair Display', serif; font-size: 2.1rem;
-            font-weight: 700; color: var(--white); margin-bottom: 14px;
-            position: relative; z-index: 1;
-        }
-        .cta-banner p {
-            color: rgba(255,255,255,0.6); margin-bottom: 32px;
-            font-size: 1rem; position: relative; z-index: 1;
-        }
-        .cta-banner .btn { position: relative; z-index: 1; }
+        .cta-section{padding:40px 0 80px}
+        .cta-banner{border-radius:var(--radius-2xl);padding:64px 48px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#0A1628,#0D2840,#1A0A2E,#0E1A3A);background-size:400% 400%;animation:gradientShift 8s ease-in-out infinite}
+        .cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 350px 250px at 75% 20%,rgba(34,211,238,0.2),transparent),radial-gradient(ellipse 300px 250px at 25% 80%,rgba(139,92,246,0.18),transparent),radial-gradient(ellipse 200px 200px at 50% 50%,rgba(96,165,250,0.1),transparent)}
+        .cta-banner::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02)1px,transparent 1px);background-size:40px 40px}
+        .cta-banner h3{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--white);margin-bottom:14px;position:relative;z-index:1}
+        .cta-banner p{color:rgba(255,255,255,0.6);margin-bottom:32px;font-size:1rem;position:relative;z-index:1}
+        .cta-banner .btn{position:relative;z-index:1}
 
         /* FOOTER */
-        footer {
-            background: var(--slate-900); color: var(--slate-400);
-            padding: 52px 0 0; position: relative; overflow: hidden;
-        }
-        footer::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--cyan-400), var(--blue-500), var(--violet-500), var(--fuchsia-400));
-        }
-        .footer-top {
-            display: grid; grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 40px; padding-bottom: 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .footer-brand h3 {
-            font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--cyan-400), var(--blue-400));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 320px; }
-        .footer-col h4 {
-            font-size: 0.82rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.06em; color: var(--slate-300); margin-bottom: 16px;
-        }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .footer-col a { font-size: 0.88rem; color: var(--slate-400); transition: color var(--transition); }
-        .footer-col a:hover { color: var(--cyan-400); }
-        .contact-item {
-            display: flex; align-items: center; gap: 10px;
-            font-size: 0.88rem; transition: color var(--transition);
-        }
-        a.contact-item:hover { color: var(--cyan-400); }
-        .contact-item i {
-            background: linear-gradient(135deg, var(--cyan-400), var(--blue-400));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; width: 18px; text-align: center; font-size: 1rem;
-        }
-        .contact-item .fa-whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .footer-bottom {
-            padding: 20px 0; display: flex; align-items: center;
-            justify-content: space-between; font-size: 0.78rem; color: var(--slate-600);
-        }
-        .footer-bottom-links { display: flex; gap: 20px; }
-        .footer-bottom-links a { color: var(--slate-500); transition: color var(--transition); }
-        .footer-bottom-links a:hover { color: var(--slate-300); }
+        footer{background:var(--slate-900);color:var(--slate-400);padding:52px 0 0;position:relative;overflow:hidden}
+        footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan-400),var(--blue-500),var(--violet-500),var(--fuchsia-400))}
+        .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .footer-brand h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:12px;background:linear-gradient(135deg,var(--cyan-400),var(--blue-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .footer-brand p{font-size:0.85rem;line-height:1.7;max-width:320px}
+        .footer-col h4{font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--slate-300);margin-bottom:16px}
+        .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+        .footer-col a{font-size:0.88rem;color:var(--slate-400);transition:color var(--transition)}
+        .footer-col a:hover{color:var(--cyan-400)}
+        .contact-item{display:flex;align-items:center;gap:10px;font-size:0.88rem;transition:color var(--transition)}
+        a.contact-item:hover{color:var(--cyan-400)}
+        .contact-item i{background:linear-gradient(135deg,var(--cyan-400),var(--blue-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;width:18px;text-align:center;font-size:1rem}
+        .contact-item .fa-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .footer-bottom{padding:20px 0;display:flex;align-items:center;justify-content:space-between;font-size:0.78rem;color:var(--slate-600)}
+        .footer-bottom-links{display:flex;gap:20px}
+        .footer-bottom-links a{color:var(--slate-500);transition:color var(--transition)}
+        .footer-bottom-links a:hover{color:var(--slate-300)}
 
         /* ANIMATIONS */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease-out, transform 0.55s ease-out; }
-        .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
-        .stagger.visible > *:nth-child(2) { transition-delay: 0.15s; }
-        .stagger.visible > *:nth-child(3) { transition-delay: 0.25s; }
-        .stagger.visible > *:nth-child(4) { transition-delay: 0.35s; }
-        .stagger.visible > * { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeInDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+        .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .stagger>*{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease-out,transform 0.55s ease-out}
+        .stagger.visible>*:nth-child(1){transition-delay:.05s}.stagger.visible>*:nth-child(2){transition-delay:.15s}.stagger.visible>*:nth-child(3){transition-delay:.25s}.stagger.visible>*:nth-child(4){transition-delay:.35s}
+        .stagger.visible>*{opacity:1;transform:translateY(0)}
 
         /* MOBILE MENU */
-        .mobile-menu {
-            display: none; position: fixed; inset: 0;
-            background: rgba(255,255,255,0.97); backdrop-filter: blur(24px);
-            z-index: 999; flex-direction: column; align-items: center;
-            justify-content: center; gap: 8px;
-        }
-        .mobile-menu.active { display: flex; }
-        .mobile-menu a {
-            font-size: 1.2rem; font-weight: 600; color: var(--slate-800);
-            padding: 14px 36px; border-radius: var(--radius-md);
-            transition: all var(--transition);
-        }
-        .mobile-menu a:hover {
-            background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(59,130,246,0.08));
-            color: var(--blue-600);
-        }
+        .mobile-menu{display:none;position:fixed;inset:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+        .mobile-menu.active{display:flex}
+        .mobile-menu a{font-size:1.2rem;font-weight:600;color:var(--slate-800);padding:14px 36px;border-radius:var(--radius-md);transition:all var(--transition)}
+        .mobile-menu a:hover{background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(59,130,246,0.08));color:var(--blue-600)}
 
         /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .features-grid { grid-template-columns: 1fr; }
-            .advantages-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-top { grid-template-columns: 1fr; }
-            .hero-content h2 { font-size: 2.6rem; }
+        @media(max-width:1024px){.features-grid{grid-template-columns:1fr}.advantages-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr}.hero-content h2{font-size:2.6rem}.vm-hero-inner{flex-direction:column;text-align:center}}
+        @media(max-width:768px){
+            .nav-links{display:none}.hamburger{display:flex}
+            .navbar-inner{padding:0 16px;height:64px}.navbar-brand .brand-logo{width:38px;height:38px;border-radius:10px}.navbar-brand .brand-text h1{font-size:1rem}.navbar-brand .brand-text span{font-size:0.65rem}.navbar-brand{gap:10px}
+            .hero{min-height:420px}.hero-content{padding:48px 18px 36px}.hero-content h2{font-size:1.9rem}.hero-content p{font-size:0.9rem;margin-bottom:28px}.hero-badge{font-size:0.72rem;padding:5px 14px;margin-bottom:20px}
+            .hero-stats-bar{padding:0 16px 40px}.hero-stats{gap:20px}.hero-stat .num{font-size:1.5rem}.hero-stat .label{font-size:0.7rem}
+            .search-section{margin-top:-24px;padding:0 16px;margin-bottom:28px}.search-bar{padding:4px 6px 4px 18px}.search-bar input{font-size:0.88rem}.search-btn{width:40px;height:40px}
+            .section{padding:44px 0}.container{padding:0 16px}.section-title{font-size:1.5rem}.section-subtitle{font-size:0.9rem}.section-header{margin-bottom:28px}
+            .feature-group-header{padding:24px 20px 16px}.feature-group h3{font-size:1.1rem}.feature-list{padding:4px 8px 10px}.feature-item{padding:12px;gap:10px}.feature-item .fi-icon{width:36px;height:36px;font-size:14px}.feature-item .fi-text h4{font-size:0.84rem}.feature-item .fi-text span{font-size:0.72rem}
+            .advantages-grid{gap:16px}.adv-card{padding:24px 18px}.adv-icon{width:52px;height:52px;font-size:22px;border-radius:14px}.adv-card h4{font-size:0.92rem}.adv-card p{font-size:0.8rem}
+            .cta-banner{padding:40px 20px;border-radius:var(--radius-xl)}.cta-banner h3{font-size:1.45rem}.cta-banner p{font-size:0.88rem}
+            .footer-top{gap:28px;padding-bottom:28px}.footer-brand p{font-size:0.8rem}.footer-bottom{flex-direction:column;gap:10px;text-align:center}
+            .mesh-bg .orb{opacity:0.06}
+            .vm-misi-grid{grid-template-columns:1fr}
+            .vm-hero-bar{padding:28px 20px}
+            .vm-visi-card{padding:24px 18px}
+            .main-tab-btn{padding:8px 16px;font-size:0.82rem}
         }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .navbar-inner { padding: 0 16px; height: 64px; }
-            .navbar-brand .brand-logo { width: 38px; height: 38px; border-radius: 10px; }
-            .navbar-brand .brand-text h1 { font-size: 1rem; }
-            .navbar-brand .brand-text span { font-size: 0.65rem; }
-            .navbar-brand { gap: 10px; }
-            .hero { min-height: 420px; }
-            .hero-content { padding: 48px 18px 36px; }
-            .hero-content h2 { font-size: 1.9rem; }
-            .hero-content p { font-size: 0.9rem; margin-bottom: 28px; }
-            .hero-badge { font-size: 0.72rem; padding: 5px 14px; margin-bottom: 20px; }
-            .hero-stats-bar { padding: 0 16px 40px; }
-            .hero-stats { gap: 20px; }
-            .hero-stat .num { font-size: 1.5rem; }
-            .hero-stat .label { font-size: 0.7rem; }
-            .search-section { margin-top: -24px; padding: 0 16px; margin-bottom: 28px; }
-            .search-bar { padding: 4px 6px 4px 18px; }
-            .search-bar input { font-size: 0.88rem; }
-            .search-btn { width: 40px; height: 40px; }
-            .section { padding: 44px 0; }
-            .container { padding: 0 16px; }
-            .section-title { font-size: 1.5rem; }
-            .section-subtitle { font-size: 0.9rem; }
-            .section-header { margin-bottom: 28px; }
-            .feature-group-header { padding: 24px 20px 16px; }
-            .feature-group h3 { font-size: 1.1rem; }
-            .feature-list { padding: 4px 8px 10px; }
-            .feature-item { padding: 12px; gap: 10px; }
-            .feature-item .fi-icon { width: 36px; height: 36px; font-size: 14px; }
-            .feature-item .fi-text h4 { font-size: 0.84rem; }
-            .feature-item .fi-text span { font-size: 0.72rem; }
-            .advantages-grid { gap: 16px; }
-            .adv-card { padding: 24px 18px; }
-            .adv-icon { width: 52px; height: 52px; font-size: 22px; border-radius: 14px; }
-            .adv-card h4 { font-size: 0.92rem; }
-            .adv-card p { font-size: 0.8rem; }
-            .cta-banner { padding: 40px 20px; border-radius: var(--radius-xl); }
-            .cta-banner h3 { font-size: 1.45rem; }
-            .cta-banner p { font-size: 0.88rem; }
-            .footer-top { gap: 28px; padding-bottom: 28px; }
-            .footer-brand p { font-size: 0.8rem; }
-            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
-            .mesh-bg .orb { opacity: 0.06; }
+        @media(max-width:480px){
+            .navbar-inner{height:58px;padding:0 12px}.navbar-brand .brand-logo{width:34px;height:34px;border-radius:8px}.navbar-brand .brand-text h1{font-size:0.9rem}.navbar-brand{gap:8px}
+            .hero{min-height:380px}.hero-content{padding:40px 14px 30px}.hero-content h2{font-size:1.55rem}.hero-content p{font-size:0.85rem;line-height:1.6}
+            .hero-stats{flex-direction:column;gap:14px}.hero-divider{width:40px;height:1px;align-self:center}
+            .advantages-grid{grid-template-columns:1fr}
+            .btn{padding:12px 22px;font-size:0.86rem}.hero-actions{flex-direction:column;width:100%;padding:0 8px}.hero-actions .btn{width:100%;justify-content:center}
+            .container{padding:0 12px}.search-section{padding:0 12px}.search-bar{padding:3px 4px 3px 14px}.search-bar input{font-size:0.84rem;padding:8px 0}
+            .feature-group-header{padding:20px 16px 14px}.feature-group-icon{width:48px;height:48px;font-size:20px}.feature-list{padding:2px 6px 8px}.feature-item{padding:11px 10px;min-height:56px}
+            .cta-banner{padding:32px 16px}.cta-banner h3{font-size:1.25rem}
+            .footer-brand>div:first-child{flex-wrap:wrap}
+            .main-tab-btn{padding:7px 14px;font-size:0.78rem}
+            .main-tab-btn i{display:none}
         }
-        @media (max-width: 480px) {
-            .navbar-inner { height: 58px; padding: 0 12px; }
-            .navbar-brand .brand-logo { width: 34px; height: 34px; border-radius: 8px; }
-            .navbar-brand .brand-text h1 { font-size: 0.9rem; }
-            .navbar-brand { gap: 8px; }
-            .hero { min-height: 380px; }
-            .hero-content { padding: 40px 14px 30px; }
-            .hero-content h2 { font-size: 1.55rem; }
-            .hero-content p { font-size: 0.85rem; line-height: 1.6; }
-            .hero-stats { flex-direction: column; gap: 14px; }
-            .hero-divider { width: 40px; height: 1px; align-self: center; }
-            .advantages-grid { grid-template-columns: 1fr; }
-            .btn { padding: 12px 22px; font-size: 0.86rem; }
-            .hero-actions { flex-direction: column; width: 100%; padding: 0 8px; }
-            .hero-actions .btn { width: 100%; justify-content: center; }
-            .container { padding: 0 12px; }
-            .search-section { padding: 0 12px; }
-            .search-bar { padding: 3px 4px 3px 14px; }
-            .search-bar input { font-size: 0.84rem; padding: 8px 0; }
-            .feature-group-header { padding: 20px 16px 14px; }
-            .feature-group-icon { width: 48px; height: 48px; font-size: 20px; }
-            .feature-list { padding: 2px 6px 8px; }
-            .feature-item { padding: 11px 10px; min-height: 56px; }
-            .cta-banner { padding: 32px 16px; }
-            .cta-banner h3 { font-size: 1.25rem; }
-            .footer-brand > div:first-child { flex-wrap: wrap; }
-        }
-        @supports (padding: env(safe-area-inset-bottom)) {
-            .navbar-inner { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
-            footer .container { padding-bottom: env(safe-area-inset-bottom); }
-        }
-        @media (hover: none) and (pointer: coarse) {
-            .feature-item { -webkit-tap-highlight-color: transparent; }
-            .feature-item:active { background: var(--slate-100); transform: scale(0.98); }
-            .btn:active { transform: scale(0.97); }
-            .adv-card:active { transform: scale(0.97); }
-            .feature-item:hover { transform: none; }
-            .adv-card:hover { transform: none; }
-            .feature-group:hover { transform: none; }
-        }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--slate-100); }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--cyan-500), var(--blue-500));
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--blue-500), var(--violet-500));
-        }
+        @media(hover:none)and(pointer:coarse){.feature-item{-webkit-tap-highlight-color:transparent}.feature-item:active{background:var(--slate-100);transform:scale(0.98)}.btn:active{transform:scale(0.97)}.adv-card:active{transform:scale(0.97)}.feature-item:hover{transform:none}.adv-card:hover{transform:none}.feature-group:hover{transform:none}.vm-misi-card:hover{transform:none}.vm-tujuan-item:hover{transform:none}}
+        ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--slate-100)}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan-500),var(--blue-500));border-radius:4px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--blue-500),var(--violet-500))}
     </style>
 </head>
 <body>
 
-<div class="mesh-bg">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-</div>
+<div class="mesh-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
     <div class="navbar-inner">
         <a href="#" class="navbar-brand">
             <img src="https://iili.io/fmUkBsf.md.png" alt="Logo SMKN 1 Maluku Tengah" class="brand-logo">
-            <div class="brand-text">
-                <h1>SmartKurikulum</h1>
-                <span>SMKN 1 Maluku Tengah</span>
-            </div>
+            <div class="brand-text"><h1>SmartKurikulum</h1><span>SMKN 1 Maluku Tengah</span></div>
         </a>
         <ul class="nav-links">
             <li><a href="#" class="active">Beranda</a></li>
-            <li><a href="#administrasi">Administrasi</a></li>
-            <li><a href="#guru">Guru & Kelas</a></li>
-            <li><a href="#penilaian">Penilaian</a></li>
-            <li><a href="https://alexbahy-tech.github.io/visi-misi/" target="_blank">Visi & Misi</a></li>
+            <li><a href="#fitur">Portal</a></li>
+            <li><a href="#keunggulan">Keunggulan</a></li>
             <li><a href="#kontak">Kontak</a></li>
         </ul>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
     <a href="#" onclick="closeMenu()">Beranda</a>
-    <a href="#administrasi" onclick="closeMenu()">Administrasi</a>
-    <a href="#guru" onclick="closeMenu()">Guru & Kelas</a>
-    <a href="#penilaian" onclick="closeMenu()">Penilaian</a>
-    <a href="https://alexbahy-tech.github.io/visi-misi/" onclick="closeMenu()">Visi & Misi</a>
+    <a href="#fitur" onclick="closeMenu()">Portal</a>
+    <a href="#keunggulan" onclick="closeMenu()">Keunggulan</a>
     <a href="#kontak" onclick="closeMenu()">Kontak</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-bg">
-        <img src="https://iili.io/fmU1FGn.md.jpg" alt="SMKN 1 Maluku Tengah">
-    </div>
+    <div class="hero-bg"><img src="https://iili.io/fmU1FGn.md.jpg" alt="SMKN 1 Maluku Tengah"></div>
     <div class="hero-aurora"></div>
     <div class="hero-content">
-        <div class="hero-badge">
-            <i class="fas fa-circle"></i>
-            Tahun Ajaran 2025 / 2026
-        </div>
+        <div class="hero-badge"><i class="fas fa-circle"></i> Tahun Ajaran 2025 / 2026</div>
         <h2><span class="text-gradient">SmartKurikulum</span> Center</h2>
         <p>Portal Kurikulum & Akademik Terpadu SMK Negeri 1 Maluku Tengah — Akses cepat seluruh informasi kurikulum di satu tempat.</p>
         <div class="hero-actions">
-            <a href="#administrasi" class="btn btn-primary">
-                <i class="fas fa-arrow-right"></i> Masuk Portal
-            </a>
-            <a href="#fitur" class="btn btn-secondary">
-                <i class="fas fa-eye"></i> Lihat Fitur
-            </a>
+            <a href="#fitur" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Masuk Portal</a>
+            <a href="#fitur" class="btn btn-secondary" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)"><i class="fas fa-bullseye"></i> Visi & Misi</a>
         </div>
     </div>
 </section>
 
-<!-- Hero Stats -->
 <div class="hero-stats-bar">
     <div class="hero-stats">
-        <div class="hero-stat">
-            <div class="num">14+</div>
-            <div class="label">Menu Terintegrasi</div>
-        </div>
+        <div class="hero-stat"><div class="num">14+</div><div class="label">Menu Terintegrasi</div></div>
         <div class="hero-divider"></div>
-        <div class="hero-stat">
-            <div class="num">100%</div>
-            <div class="label">Akses Digital</div>
-        </div>
+        <div class="hero-stat"><div class="num">100%</div><div class="label">Akses Digital</div></div>
         <div class="hero-divider"></div>
-        <div class="hero-stat">
-            <div class="num">24/7</div>
-            <div class="label">Tersedia Online</div>
-        </div>
+        <div class="hero-stat"><div class="num">24/7</div><div class="label">Tersedia Online</div></div>
     </div>
 </div>
 
@@ -797,117 +379,149 @@
         <div class="section-header reveal">
             <div class="section-label">Fitur Portal</div>
             <h2 class="section-title">Semua yang Anda Butuhkan</h2>
-            <p class="section-subtitle">Akses dokumen kurikulum, data guru, jadwal, dan sistem penilaian dalam satu portal terintegrasi.</p>
+            <p class="section-subtitle">Akses dokumen kurikulum, data guru, jadwal, penilaian, serta visi & misi dalam satu portal terintegrasi.</p>
         </div>
 
-        <div class="features-grid stagger" id="administrasi">
+        <!-- MAIN TABS -->
+        <div class="main-tabs reveal" id="mainTabs">
+            <button class="main-tab-btn active" data-target="tab-portal"><i class="fas fa-th-large"></i> Portal Menu</button>
+            <button class="main-tab-btn" data-target="tab-visi-misi"><i class="fas fa-bullseye"></i> Visi & Misi</button>
+        </div>
 
-            <!-- ADMINISTRASI -->
-            <div class="feature-group admin reveal">
-                <div class="feature-group-header">
-                    <div class="feature-group-icon"><i class="fas fa-folder-open"></i></div>
-                    <h3>Administrasi Kurikulum</h3>
-                    <p>Dokumen kurikulum, kalender akademik, dan jadwal pembelajaran.</p>
+        <!-- TAB: PORTAL -->
+        <div class="main-tab-panel active" id="tab-portal">
+            <div class="features-grid stagger" id="administrasi">
+                <div class="feature-group admin reveal">
+                    <div class="feature-group-header">
+                        <div class="feature-group-icon"><i class="fas fa-folder-open"></i></div>
+                        <h3>Administrasi Kurikulum</h3>
+                        <p>Dokumen kurikulum, kalender akademik, dan jadwal pembelajaran.</p>
+                    </div>
+                    <div class="feature-list">
+                        <a href="https://docs.google.com/document/d/15mBAtdmtpNIgLSD3c3YG7oiAxdieLiyL/edit?usp=sharing&ouid=109617087844226844570&rtpof=true&sd=true" target="_blank" class="feature-item" data-search="kurikulum sekolah dokumen ksp"><div class="fi-icon"><i class="fas fa-book-open"></i></div><div class="fi-text"><h4>Kurikulum Sekolah</h4><span>Dokumen KSP Terbaru</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://drive.google.com/file/d/1OskwfvMyV08lREJ6MNAoCeg3NOlmWczx/view?usp=sharing" target="_blank" class="feature-item" data-search="sk pembagian tugas mengajar"><div class="fi-icon"><i class="fas fa-file-contract"></i></div><div class="fi-text"><h4>SK Pembagian Tugas</h4><span>Dokumen Resmi SK Mengajar</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://alexbahy-tech.github.io/pembagian-jam-mengajar/" target="_blank" class="feature-item" data-search="pembagian jam jadwal mengajar guru"><div class="fi-icon"><i class="fas fa-clock"></i></div><div class="fi-text"><h4>Pembagian Jam</h4><span>Jadwal Mengajar Guru</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://alexbahy-tech.github.io/portal-jadwal-smkn1mt/" target="_blank" class="feature-item" data-search="jadwal pelajaran interaktif"><div class="fi-icon"><i class="fas fa-clipboard-list"></i></div><div class="fi-text"><h4>Jadwal Pelajaran</h4><span>Jadwal Interaktif</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://alexbahy-tech.github.io/kalender-pendidikan/" target="_blank" class="feature-item" data-search="kalender pendidikan tahun ajaran"><div class="fi-icon"><i class="far fa-calendar-alt"></i></div><div class="fi-text"><h4>Kalender Pendidikan</h4><span>Tahun Ajaran 2025/2026</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://smkn1malteng.my.canva.site/bs8mcv8majfq0n7r" target="_blank" class="feature-item" data-search="absensi mapel bahasa inggris"><div class="fi-icon"><i class="fas fa-user-check"></i></div><div class="fi-text"><h4>Absensi Mapel</h4><span>Mapel Bahasa Inggris</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                    </div>
                 </div>
-                <div class="feature-list">
-                    <a href="https://alexbahy-tech.github.io/visi-misi/" target="_blank" class="feature-item" data-search="visi misi sekolah kurikulum tujuan">
-                        <div class="fi-icon"><i class="fas fa-bullseye"></i></div>
-                        <div class="fi-text"><h4>Visi & Misi</h4><span>Visi Misi Sekolah & Kurikulum</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://docs.google.com/document/d/15mBAtdmtpNIgLSD3c3YG7oiAxdieLiyL/edit?usp=sharing&ouid=109617087844226844570&rtpof=true&sd=true" target="_blank" class="feature-item" data-search="kurikulum sekolah dokumen ksp">
-                        <div class="fi-icon"><i class="fas fa-book-open"></i></div>
-                        <div class="fi-text"><h4>Kurikulum Sekolah</h4><span>Dokumen KSP Terbaru</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://drive.google.com/file/d/1OskwfvMyV08lREJ6MNAoCeg3NOlmWczx/view?usp=sharing" target="_blank" class="feature-item" data-search="sk pembagian tugas mengajar">
-                        <div class="fi-icon"><i class="fas fa-file-contract"></i></div>
-                        <div class="fi-text"><h4>SK Pembagian Tugas</h4><span>Dokumen Resmi SK Mengajar</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://alexbahy-tech.github.io/pembagian-jam-mengajar/" target="_blank" class="feature-item" data-search="pembagian jam jadwal mengajar guru">
-                        <div class="fi-icon"><i class="fas fa-clock"></i></div>
-                        <div class="fi-text"><h4>Pembagian Jam</h4><span>Jadwal Mengajar Guru</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://alexbahy-tech.github.io/portal-jadwal-smkn1mt/" target="_blank" class="feature-item" data-search="jadwal pelajaran interaktif">
-                        <div class="fi-icon"><i class="fas fa-clipboard-list"></i></div>
-                        <div class="fi-text"><h4>Jadwal Pelajaran</h4><span>Jadwal Interaktif</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://alexbahy-tech.github.io/kalender-pendidikan/" target="_blank" class="feature-item" data-search="kalender pendidikan tahun ajaran">
-                        <div class="fi-icon"><i class="far fa-calendar-alt"></i></div>
-                        <div class="fi-text"><h4>Kalender Pendidikan</h4><span>Tahun Ajaran 2025/2026</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://smkn1malteng.my.canva.site/bs8mcv8majfq0n7r" target="_blank" class="feature-item" data-search="absensi mapel bahasa inggris">
-                        <div class="fi-icon"><i class="fas fa-user-check"></i></div>
-                        <div class="fi-text"><h4>Absensi Mapel</h4><span>Mapel Bahasa Inggris</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
+                <div class="feature-group guru reveal" id="guru">
+                    <div class="feature-group-header">
+                        <div class="feature-group-icon"><i class="fas fa-chalkboard-user"></i></div>
+                        <h3>Guru & Kelas</h3>
+                        <p>Data guru, wali kelas, monitoring kehadiran, dan perangkat pembelajaran daring.</p>
+                    </div>
+                    <div class="feature-list">
+                        <a href="https://smkn1malteng.my.canva.site/dagwxsv7pai" target="_blank" class="feature-item" data-search="data guru wali kelas database"><div class="fi-icon"><i class="fas fa-id-card"></i></div><div class="fi-text"><h4>Data Guru Wali</h4><span>Database Wali Kelas</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://alexbahy-tech.github.io/aplikasi-monitoring-guru/" target="_blank" class="feature-item" data-search="monitoring kehadiran guru absensi rekap"><div class="fi-icon"><i class="fas fa-user-check"></i></div><div class="fi-text"><h4>Monitoring Kehadiran Guru</h4><span>Sistem Absensi & Rekapitulasi</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://smkn1malteng.my.canva.site/dagwxrsiwr8" target="_blank" class="feature-item" data-search="tupoksi guru wali tugas fungsi"><div class="fi-icon"><i class="fas fa-list-check"></i></div><div class="fi-text"><h4>Tupoksi Guru Wali</h4><span>Tugas & Fungsi</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://smkn1malteng.my.canva.site/dagztogsf-q" target="_blank" class="feature-item" data-search="aplikasi guru wali penunjang"><div class="fi-icon"><i class="fas fa-mobile-alt"></i></div><div class="fi-text"><h4>Aplikasi Guru Wali</h4><span>Aplikasi Penunjang</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://alexbahy34-code.github.io/perangkat-online-SMK/" target="_blank" class="feature-item" data-search="perangkat online pembelajaran daring"><div class="fi-icon"><i class="fas fa-wifi"></i></div><div class="fi-text"><h4>Perangkat Online</h4><span>Pembelajaran Daring</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                    </div>
+                </div>
+                <div class="feature-group nilai reveal" id="penilaian">
+                    <div class="feature-group-header">
+                        <div class="feature-group-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h3>Penilaian & Pelaporan</h3>
+                        <p>Input nilai, rekap, dan monitoring pengisian rapor semester.</p>
+                    </div>
+                    <div class="feature-list">
+                        <a href="https://sites.google.com/view/daftar-nilai-smkn1/home" target="_blank" class="feature-item" data-search="daftar nilai semester ganjil"><div class="fi-icon"><i class="fas fa-file-signature"></i></div><div class="fi-text"><h4>Daftar Nilai</h4><span>Semester Ganjil</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://script.google.com/macros/s/AKfycbw4vDCff5BTE2DurxfF1dwKF7JeMTzHKFNWrp9S_jgrcl7ZSqYPnKoBpwnLkQsVMJX7/exec" target="_blank" class="feature-item" data-search="laporan input monitoring pengisian nilai dashboard"><div class="fi-icon"><i class="fas fa-tachometer-alt"></i></div><div class="fi-text"><h4>Dashboard Penginputan</h4><span>Monitoring Progress Input Nilai</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://alexbahy-tech.github.io/Portal-ledger-Rapor-Semester-Ganjil-2025-2026/" target="_blank" class="feature-item" data-search="portal ledger rapor semester ganjil"><div class="fi-icon"><i class="fas fa-file-alt"></i></div><div class="fi-text"><h4>Portal Ledger Rapor</h4><span>Ledger Rapor Semester Ganjil 2025/2026</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- GURU & KELAS -->
-            <div class="feature-group guru reveal" id="guru">
-                <div class="feature-group-header">
-                    <div class="feature-group-icon"><i class="fas fa-chalkboard-user"></i></div>
-                    <h3>Guru & Kelas</h3>
-                    <p>Data guru, wali kelas, monitoring kehadiran, dan perangkat pembelajaran daring.</p>
-                </div>
-                <div class="feature-list">
-                    <a href="https://smkn1malteng.my.canva.site/dagwxsv7pai" target="_blank" class="feature-item" data-search="data guru wali kelas database">
-                        <div class="fi-icon"><i class="fas fa-id-card"></i></div>
-                        <div class="fi-text"><h4>Data Guru Wali</h4><span>Database Wali Kelas</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://alexbahy-tech.github.io/aplikasi-monitoring-guru/" target="_blank" class="feature-item" data-search="monitoring kehadiran guru absensi rekap">
-                        <div class="fi-icon"><i class="fas fa-user-check"></i></div>
-                        <div class="fi-text"><h4>Monitoring Kehadiran Guru</h4><span>Sistem Absensi & Rekapitulasi</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://smkn1malteng.my.canva.site/dagwxrsiwr8" target="_blank" class="feature-item" data-search="tupoksi guru wali tugas fungsi">
-                        <div class="fi-icon"><i class="fas fa-list-check"></i></div>
-                        <div class="fi-text"><h4>Tupoksi Guru Wali</h4><span>Tugas & Fungsi</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://smkn1malteng.my.canva.site/dagztogsf-q" target="_blank" class="feature-item" data-search="aplikasi guru wali penunjang">
-                        <div class="fi-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <div class="fi-text"><h4>Aplikasi Guru Wali</h4><span>Aplikasi Penunjang</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://alexbahy34-code.github.io/perangkat-online-SMK/" target="_blank" class="feature-item" data-search="perangkat online pembelajaran daring">
-                        <div class="fi-icon"><i class="fas fa-wifi"></i></div>
-                        <div class="fi-text"><h4>Perangkat Online</h4><span>Pembelajaran Daring</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                </div>
-            </div>
+        <!-- TAB: VISI & MISI -->
+        <div class="main-tab-panel" id="tab-visi-misi">
+            <div class="vm-panel">
 
-            <!-- PENILAIAN -->
-            <div class="feature-group nilai reveal" id="penilaian">
-                <div class="feature-group-header">
-                    <div class="feature-group-icon"><i class="fas fa-chart-pie"></i></div>
-                    <h3>Penilaian & Pelaporan</h3>
-                    <p>Input nilai, rekap, dan monitoring pengisian rapor semester.</p>
+                <!-- Header banner -->
+                <div class="vm-hero-bar">
+                    <div class="vm-hero-inner">
+                        <div class="vm-hero-logo"><img src="https://iili.io/qH7WfM7.md.png" alt="Logo SMKN 1 Maluku Tengah"></div>
+                        <div class="vm-hero-text">
+                            <h3>SMK Negeri 1 Maluku Tengah</h3>
+                            <p>Unggul, Terampil, Berkarakter, Berwawasan Global dan Siap Kerja di IDUKA — Menuju Visi 2029</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-list">
-                    <a href="https://sites.google.com/view/daftar-nilai-smkn1/home" target="_blank" class="feature-item" data-search="daftar nilai semester ganjil">
-                        <div class="fi-icon"><i class="fas fa-file-signature"></i></div>
-                        <div class="fi-text"><h4>Daftar Nilai</h4><span>Semester Ganjil</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://script.google.com/macros/s/AKfycbw4vDCff5BTE2DurxfF1dwKF7JeMTzHKFNWrp9S_jgrcl7ZSqYPnKoBpwnLkQsVMJX7/exec" target="_blank" class="feature-item" data-search="laporan input monitoring pengisian nilai dashboard">
-                        <div class="fi-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        <div class="fi-text"><h4>Dashboard Penginputan</h4><span>Monitoring Progress Input Nilai</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
-                    <a href="https://alexbahy-tech.github.io/Portal-ledger-Rapor-Semester-Ganjil-2025-2026/" target="_blank" class="feature-item" data-search="portal ledger rapor semester ganjil">
-                        <div class="fi-icon"><i class="fas fa-file-alt"></i></div>
-                        <div class="fi-text"><h4>Portal Ledger Rapor</h4><span>Ledger Rapor Semester Ganjil 2025/2026</span></div>
-                        <i class="fas fa-chevron-right fi-arrow"></i>
-                    </a>
+
+                <!-- Sub tabs -->
+                <div class="vm-sub-tabs" id="vmSubTabs">
+                    <button class="vm-sub-btn active" data-target="vm-visi">Visi Sekolah</button>
+                    <button class="vm-sub-btn" data-target="vm-misi">Misi Sekolah</button>
+                    <button class="vm-sub-btn" data-target="vm-kur">Kurikulum</button>
+                    <button class="vm-sub-btn" data-target="vm-tujuan">Tujuan</button>
                 </div>
+
+                <!-- Visi Sekolah -->
+                <div class="vm-sub-panel active" id="vm-visi">
+                    <div class="vm-visi-card">
+                        <div class="vm-visi-icon">🎯</div>
+                        <div class="vm-visi-text">"<em>Unggul</em>, <em>Terampil</em>, <em>Berkarakter</em>, <em>Berwawasan Global</em> dan <em>Siap Kerja</em> di IDUKA sampai tahun <em>2029</em>."</div>
+                    </div>
+                </div>
+
+                <!-- Misi Sekolah -->
+                <div class="vm-sub-panel" id="vm-misi">
+                    <div class="vm-misi-grid">
+                        <div class="vm-misi-card"><div class="vm-misi-num">01</div><h3>Bimbingan & Pelatihan</h3><p>Membimbing dan melatih murid agar berkarakter, berprestasi, dan kompeten sesuai kebutuhan IDUKA.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">02</div><h3>Sertifikasi Profesi</h3><p>Meningkatkan kompetensi lulusan melalui Lembaga Sertifikasi Profesi.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">03</div><h3>Pembelajaran Optimal</h3><p>Mengembangkan potensi akademik siswa secara optimal melalui pembelajaran yang aktif dan menyenangkan.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">04</div><h3>Studi & Karir</h3><p>Mempersiapkan siswa untuk melanjutkan studi ke jenjang yang lebih tinggi atau memasuki dunia kerja.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">05</div><h3>Kepemimpinan & Wirausaha</h3><p>Menumbuhkan jiwa kepemimpinan dan kewirausahaan serta rasa tanggung jawab.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">06</div><h3>Kerjasama Stakeholder</h3><p>Menjalin kerjasama dengan semua stakeholder untuk mendukung pencapaian tujuan bersama.</p></div>
+                    </div>
+                </div>
+
+                <!-- Kurikulum -->
+                <div class="vm-sub-panel" id="vm-kur">
+                    <div class="vm-visi-card" style="margin-bottom:20px">
+                        <div class="vm-visi-icon">📘</div>
+                        <div class="vm-visi-text">"Mewujudkan kurikulum yang <em>adaptif</em>, <em>inovatif</em>, dan <em>berorientasi pada kebutuhan IDUKA</em> guna menghasilkan lulusan yang unggul, terampil, berkarakter, dan berdaya saing global sampai tahun <em>2029</em>."</div>
+                    </div>
+                    <h4 style="font-size:0.92rem;font-weight:700;color:var(--slate-700);margin-bottom:16px"><i class="fas fa-list" style="margin-right:8px;color:var(--amber-500)"></i>Misi Kurikulum</h4>
+                    <div class="vm-misi-grid">
+                        <div class="vm-misi-card"><div class="vm-misi-num">01</div><h3>Kurikulum Relevan</h3><p>Mengembangkan dan mengelola kurikulum yang relevan dengan perkembangan IPTEK dan kebutuhan IDUKA.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">02</div><h3>Pembelajaran Kreatif</h3><p>Merancang sistem pembelajaran yang aktif, kreatif, dan menyenangkan untuk mengoptimalkan potensi peserta didik.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">03</div><h3>Integrasi Karakter</h3><p>Mengintegrasikan penguatan karakter, jiwa kepemimpinan, dan kewirausahaan dalam setiap proses pembelajaran.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">04</div><h3>Kompetensi Pendidik</h3><p>Memfasilitasi peningkatan kompetensi pendidik melalui pelatihan, workshop, dan pengembangan profesional berkelanjutan.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">05</div><h3>Standar Sertifikasi</h3><p>Menyelaraskan kurikulum dengan standar sertifikasi profesi dari LSP guna meningkatkan daya saing lulusan.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">06</div><h3>Penilaian Berbasis Kompetensi</h3><p>Mengembangkan sistem penilaian dan evaluasi yang transparan, objektif, dan berbasis kompetensi.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">07</div><h3>Sinergi IDUKA</h3><p>Menjalin sinergi dengan IDUKA, lembaga sertifikasi, dan stakeholder dalam pengembangan kurikulum dan teaching factory.</p></div>
+                    </div>
+                </div>
+
+                <!-- Tujuan -->
+                <div class="vm-sub-panel" id="vm-tujuan">
+                    <div class="vm-sub-tabs" id="vmTujuanTabs" style="margin-bottom:20px">
+                        <button class="vm-sub-btn active" data-target="vm-tj-sekolah">Tujuan Sekolah</button>
+                        <button class="vm-sub-btn" data-target="vm-tj-kurikulum">Tujuan Kurikulum</button>
+                    </div>
+                    <div class="vm-sub-panel active" id="vm-tj-sekolah">
+                        <div class="vm-tujuan-list">
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">🎓</div><div><h4>Lulusan Berkualitas</h4><p>Menghasilkan lulusan dengan pengetahuan akademik kuat, karakter baik, keterampilan relevan dengan IDUKA, dan siap studi lanjut atau bekerja.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">🚀</div><div><h4>Persiapan Masa Depan</h4><p>Memberikan bekal agar siswa mampu menghadapi tantangan masa depan, baik dalam melanjutkan studi maupun berkarier.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">⭐</div><div><h4>Pengembangan Potensi Optimal</h4><p>Menciptakan lingkungan belajar aktif dan menyenangkan agar siswa dapat berkembang maksimal di bidang akademik dan non-akademik.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">🤝</div><div><h4>Kerjasama Multi-Pihak</h4><p>Bekerja sama dengan industri, lembaga sertifikasi, dan komunitas untuk mendukung pencapaian tujuan sekolah.</p></div></div>
+                        </div>
+                    </div>
+                    <div class="vm-sub-panel" id="vm-tj-kurikulum">
+                        <div class="vm-tujuan-list">
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">📄</div><div><h4>Dokumen Kurikulum Operasional</h4><p>Tersedianya dokumen kurikulum operasional yang selaras dengan Kurikulum Merdeka dan kebutuhan IDUKA.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">💡</div><div><h4>Pembelajaran Bermutu</h4><p>Terlaksananya proses pembelajaran bermutu, berbasis project, dan berpusat pada peserta didik.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">👨‍🏫</div><div><h4>Kompetensi Guru</h4><p>Tercapainya peningkatan kompetensi guru secara berkelanjutan.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">💎</div><div><h4>Integrasi Nilai Karakter</h4><p>Terwujudnya integrasi nilai karakter, kepemimpinan, dan kewirausahaan dalam seluruh mata pelajaran.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">🏭</div><div><h4>Kerja Sama Produktif</h4><p>Terjalinnya kerja sama produktif dengan dunia industri dan lembaga sertifikasi dalam pengembangan kurikulum dan asesmen.</p></div></div>
+                            <div class="vm-tujuan-item"><div class="vm-tujuan-icon">📈</div><div><h4>Lulusan Tersertifikasi</h4><p>Meningkatnya persentase lulusan yang tersertifikasi, terserap di dunia kerja, atau melanjutkan ke jenjang pendidikan yang lebih tinggi.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -922,26 +536,10 @@
             <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Dirancang untuk mempermudah ekosistem akademik di SMK Negeri 1 Maluku Tengah.</p>
         </div>
         <div class="advantages-grid stagger">
-            <div class="adv-card">
-                <div class="adv-icon"><i class="fas fa-layer-group"></i></div>
-                <h4>Terpusat & Terintegrasi</h4>
-                <p>Seluruh dokumen kurikulum, jadwal, dan data akademik tersedia dalam satu portal yang mudah diakses.</p>
-            </div>
-            <div class="adv-card">
-                <div class="adv-icon"><i class="fas fa-hand-pointer"></i></div>
-                <h4>Mudah Digunakan</h4>
-                <p>Antarmuka intuitif untuk semua pengguna — guru, siswa, dan orang tua — tanpa perlu pelatihan khusus.</p>
-            </div>
-            <div class="adv-card">
-                <div class="adv-icon"><i class="fas fa-shield-halved"></i></div>
-                <h4>Transparan & Akurat</h4>
-                <p>Data terverifikasi dan diperbarui berkala oleh tim kurikulum sekolah untuk menjamin keakuratan.</p>
-            </div>
-            <div class="adv-card">
-                <div class="adv-icon"><i class="fas fa-rocket"></i></div>
-                <h4>Digitalisasi Sekolah</h4>
-                <p>Mendukung transformasi digital menuju tata kelola pendidikan yang modern dan efisien.</p>
-            </div>
+            <div class="adv-card"><div class="adv-icon"><i class="fas fa-layer-group"></i></div><h4>Terpusat & Terintegrasi</h4><p>Seluruh dokumen kurikulum, jadwal, dan data akademik tersedia dalam satu portal yang mudah diakses.</p></div>
+            <div class="adv-card"><div class="adv-icon"><i class="fas fa-hand-pointer"></i></div><h4>Mudah Digunakan</h4><p>Antarmuka intuitif untuk semua pengguna — guru, siswa, dan orang tua — tanpa perlu pelatihan khusus.</p></div>
+            <div class="adv-card"><div class="adv-icon"><i class="fas fa-shield-halved"></i></div><h4>Transparan & Akurat</h4><p>Data terverifikasi dan diperbarui berkala oleh tim kurikulum sekolah untuk menjamin keakuratan.</p></div>
+            <div class="adv-card"><div class="adv-icon"><i class="fas fa-rocket"></i></div><h4>Digitalisasi Sekolah</h4><p>Mendukung transformasi digital menuju tata kelola pendidikan yang modern dan efisien.</p></div>
         </div>
     </div>
 </section>
@@ -952,7 +550,7 @@
         <div class="cta-banner reveal">
             <h3>Siap Mengakses Portal?</h3>
             <p>Jelajahi seluruh fitur SmartKurikulum Center dan permudah alur kerja akademik Anda.</p>
-            <a href="#administrasi" class="btn btn-white"><i class="fas fa-arrow-right"></i> Mulai Sekarang</a>
+            <a href="#fitur" class="btn btn-white"><i class="fas fa-arrow-right"></i> Mulai Sekarang</a>
         </div>
     </div>
 </section>
@@ -972,10 +570,9 @@
                 <h4>Menu</h4>
                 <ul>
                     <li><a href="#">Beranda</a></li>
-                    <li><a href="#administrasi">Administrasi</a></li>
-                    <li><a href="#guru">Guru & Kelas</a></li>
-                    <li><a href="#penilaian">Penilaian</a></li>
-                    <li><a href="https://alexbahy-tech.github.io/visi-misi/" target="_blank">Visi & Misi</a></li>
+                    <li><a href="#fitur">Portal</a></li>
+                    <li><a href="#keunggulan">Keunggulan</a></li>
+                    <li><a href="#fitur" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)">Visi & Misi</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -991,7 +588,7 @@
         <div class="footer-bottom">
             <span>&copy; 2025 SmartKurikulum Center — SMK Negeri 1 Maluku Tengah</span>
             <div class="footer-bottom-links">
-                <a href="https://alexbahy-tech.github.io/visi-misi/">Visi & Misi</a>
+                <a href="#fitur" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)">Visi & Misi</a>
                 <a href="mailto:alexbahy@500gb.cloud">Email</a>
                 <a href="https://wa.me/6281249855174" target="_blank">WhatsApp</a>
             </div>
@@ -1000,11 +597,11 @@
 </footer>
 
 <script>
+    // Navbar scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 10);
-    });
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10));
 
+    // Hamburger
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -1018,35 +615,65 @@
         document.body.style.overflow = '';
     }
 
-    const revealEls = document.querySelectorAll('.reveal, .stagger');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
 
+    // Search
     document.getElementById('searchInput').addEventListener('input', function () {
         const q = this.value.toLowerCase().trim();
+        // If searching for visi/misi, switch to that tab
+        if (q && (q.includes('visi') || q.includes('misi'))) {
+            switchMainTab('visi-misi');
+            return;
+        }
+        // Otherwise ensure portal tab is active
+        if (q) switchMainTab('portal');
         const items = document.querySelectorAll('.feature-item');
         items.forEach(item => {
             const text = (item.textContent + ' ' + (item.dataset.search || '')).toLowerCase();
             item.style.display = text.includes(q) ? 'flex' : 'none';
         });
         document.querySelectorAll('.feature-group').forEach(group => {
-            const visibleItems = group.querySelectorAll('.feature-item[style*="flex"], .feature-item:not([style])');
-            const hiddenItems = group.querySelectorAll('.feature-item[style*="none"]');
-            group.style.display = (q && visibleItems.length === 0 && hiddenItems.length > 0) ? 'none' : '';
+            const vis = group.querySelectorAll('.feature-item[style*="flex"], .feature-item:not([style])');
+            const hid = group.querySelectorAll('.feature-item[style*="none"]');
+            group.style.display = (q && vis.length === 0 && hid.length > 0) ? 'none' : '';
         });
     });
 
+    // Main Tabs (Portal / Visi Misi)
+    function switchMainTab(name) {
+        const targetId = 'tab-' + name;
+        document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.target === targetId));
+        document.querySelectorAll('.main-tab-panel').forEach(p => p.classList.toggle('active', p.id === targetId));
+    }
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() { switchMainTab(this.dataset.target.replace('tab-', '')); });
+    });
+
+    // VM Sub Tabs
+    document.querySelectorAll('.vm-sub-tabs').forEach(tabGroup => {
+        tabGroup.querySelectorAll('.vm-sub-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const container = this.closest('.vm-sub-tabs').parentElement;
+                this.closest('.vm-sub-tabs').querySelectorAll('.vm-sub-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Find sibling panels
+                const panels = container.querySelectorAll(':scope > .vm-sub-panel');
+                panels.forEach(p => p.classList.remove('active'));
+                document.getElementById(this.dataset.target).classList.add('active');
+            });
+        });
+    });
+
+    // Active nav
     const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
         let current = '';
-        sections.forEach(sec => {
-            if (window.scrollY >= sec.offsetTop - 200) current = sec.getAttribute('id');
-        });
+        sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 200) current = sec.getAttribute('id'); });
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) link.classList.add('active');
