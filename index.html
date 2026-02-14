@@ -107,21 +107,12 @@
         .section-title{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--slate-900);line-height:1.2}
         .section-subtitle{font-size:1rem;color:var(--slate-500);margin-top:10px;max-width:540px}
 
-        /* ══════ MAIN TABS ══════ */
+        /* MAIN TABS */
         .main-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
-        .main-tab-btn{
-            padding:10px 22px;border:1px solid var(--slate-200);border-radius:50px;
-            background:var(--white);color:var(--slate-500);font-size:0.88rem;
-            font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit;
-            display:inline-flex;align-items:center;gap:8px;
-        }
+        .main-tab-btn{padding:10px 22px;border:1px solid var(--slate-200);border-radius:50px;background:var(--white);color:var(--slate-500);font-size:0.88rem;font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit;display:inline-flex;align-items:center;gap:8px}
         .main-tab-btn i{font-size:0.8rem}
         .main-tab-btn:hover{color:var(--blue-600);border-color:var(--blue-400);background:rgba(59,130,246,0.04)}
-        .main-tab-btn.active{
-            background:linear-gradient(135deg,var(--cyan-500),var(--blue-500),var(--indigo-500));
-            color:var(--white);border-color:transparent;
-            box-shadow:0 4px 16px rgba(59,130,246,0.3);
-        }
+        .main-tab-btn.active{background:linear-gradient(135deg,var(--cyan-500),var(--blue-500),var(--indigo-500));color:var(--white);border-color:transparent;box-shadow:0 4px 16px rgba(59,130,246,0.3)}
         .main-tab-panel{display:none}
         .main-tab-panel.active{display:block;animation:tabFadeIn 0.45s ease}
         @keyframes tabFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -158,59 +149,49 @@
         .guru .feature-item:hover .fi-arrow{color:var(--violet-500);transform:translateX(3px)}
         .nilai .feature-item:hover .fi-arrow{color:var(--rose-500);transform:translateX(3px)}
 
-        /* ══════ VISI MISI TAB PANEL ══════ */
+        /* VISI MISI TAB PANEL */
         .vm-panel{max-width:1200px}
         .vm-hero-bar{
             background:linear-gradient(135deg,#0a1628,#0d2840,#1a0a2e);
-            border-radius:var(--radius-xl);padding:40px 44px;margin-bottom:28px;
-            position:relative;overflow:hidden;
+            border-radius:var(--radius-xl);padding:48px 48px;margin-bottom:28px;
+            position:relative;overflow:hidden;text-align:center;
         }
-        .vm-hero-bar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 300px 200px at 80% 20%,rgba(34,211,238,0.12),transparent),radial-gradient(ellipse 250px 200px at 20% 80%,rgba(240,165,0,0.1),transparent)}
+        .vm-hero-bar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 400px 250px at 50% 0%,rgba(34,211,238,0.1),transparent),radial-gradient(ellipse 350px 200px at 50% 100%,rgba(240,165,0,0.08),transparent)}
         .vm-hero-bar::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02)1px,transparent 1px);background-size:40px 40px}
-        .vm-hero-inner{position:relative;z-index:1;display:flex;align-items:center;gap:28px}
-        .vm-hero-logo{width:80px;height:80px;flex-shrink:0}
-        .vm-hero-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 16px rgba(240,165,0,0.15))}
-        .vm-hero-text h3{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:6px}
-        .vm-hero-text p{color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.6}
+        .vm-hero-inner{position:relative;z-index:1;max-width:620px;margin:0 auto}
+        .vm-hero-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(240,165,0,0.15),rgba(255,107,53,0.1));border:1px solid rgba(240,165,0,0.2);padding:6px 18px;border-radius:50px;font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:18px;letter-spacing:0.04em;text-transform:uppercase}
+        .vm-hero-badge i{color:#f0a500;font-size:0.6rem}
+        .vm-hero-text h3{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.25}
+        .vm-hero-text h3 .vm-highlight{background:linear-gradient(135deg,var(--cyan-400),var(--blue-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .vm-hero-text p{color:rgba(255,255,255,0.5);font-size:0.92rem;line-height:1.7;max-width:520px;margin:0 auto}
+        .vm-hero-decor{display:flex;justify-content:center;gap:6px;margin-top:20px}
+        .vm-hero-decor span{width:32px;height:3px;border-radius:2px;opacity:0.5}
+        .vm-hero-decor span:nth-child(1){background:var(--cyan-400)}
+        .vm-hero-decor span:nth-child(2){background:var(--blue-400);width:48px;opacity:0.7}
+        .vm-hero-decor span:nth-child(3){background:#f0a500}
 
         .vm-sub-tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
-        .vm-sub-btn{
-            padding:9px 20px;border:1px solid var(--slate-200);border-radius:10px;
-            background:var(--white);color:var(--slate-500);font-size:0.84rem;
-            font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit;
-        }
+        .vm-sub-btn{padding:9px 20px;border:1px solid var(--slate-200);border-radius:10px;background:var(--white);color:var(--slate-500);font-size:0.84rem;font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit}
         .vm-sub-btn:hover{color:var(--amber-500);border-color:var(--amber-400)}
         .vm-sub-btn.active{background:linear-gradient(135deg,#f0a500,#ff6b35);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(240,165,0,0.25)}
         .vm-sub-panel{display:none}
         .vm-sub-panel.active{display:block;animation:tabFadeIn 0.4s ease}
 
-        /* VM Cards */
-        .vm-visi-card{
-            background:linear-gradient(135deg,rgba(10,36,99,0.06),rgba(240,165,0,0.04));
-            border:1px solid var(--slate-200);border-radius:var(--radius-lg);
-            padding:36px;position:relative;overflow:hidden;
-        }
+        .vm-visi-card{background:linear-gradient(135deg,rgba(10,36,99,0.06),rgba(240,165,0,0.04));border:1px solid var(--slate-200);border-radius:var(--radius-lg);padding:36px;position:relative;overflow:hidden}
         .vm-visi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f0a500,#ff6b35,var(--blue-500))}
         .vm-visi-icon{width:48px;height:48px;border-radius:12px;margin-bottom:16px;background:linear-gradient(135deg,rgba(240,165,0,0.1),rgba(255,107,53,0.08));display:flex;align-items:center;justify-content:center;font-size:22px}
         .vm-visi-text{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;line-height:1.65;color:var(--slate-800)}
         .vm-visi-text em{font-style:normal;background:linear-gradient(135deg,#f0a500,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800}
 
         .vm-misi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-        .vm-misi-card{
-            background:var(--white);border:1px solid var(--slate-200);border-radius:var(--radius-lg);
-            padding:24px;transition:all 0.3s;
-        }
+        .vm-misi-card{background:var(--white);border:1px solid var(--slate-200);border-radius:var(--radius-lg);padding:24px;transition:all 0.3s}
         .vm-misi-card:hover{transform:translateY(-4px);border-color:rgba(240,165,0,0.3);box-shadow:0 12px 32px rgba(0,0,0,0.06)}
         .vm-misi-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;background:linear-gradient(135deg,rgba(240,165,0,0.2),rgba(255,107,53,0.1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px}
         .vm-misi-card h3{font-size:0.92rem;font-weight:700;margin-bottom:6px;color:var(--slate-800)}
         .vm-misi-card p{font-size:0.82rem;color:var(--slate-500);line-height:1.7}
 
         .vm-tujuan-list{display:flex;flex-direction:column;gap:12px}
-        .vm-tujuan-item{
-            display:flex;gap:14px;align-items:flex-start;
-            background:var(--white);border:1px solid var(--slate-200);
-            border-radius:var(--radius-md);padding:20px;transition:all 0.3s;
-        }
+        .vm-tujuan-item{display:flex;gap:14px;align-items:flex-start;background:var(--white);border:1px solid var(--slate-200);border-radius:var(--radius-md);padding:20px;transition:all 0.3s}
         .vm-tujuan-item:hover{border-color:rgba(240,165,0,0.3);transform:translateX(4px);box-shadow:0 8px 24px rgba(0,0,0,0.04)}
         .vm-tujuan-icon{width:40px;height:40px;min-width:40px;border-radius:10px;background:linear-gradient(135deg,rgba(240,165,0,0.1),rgba(255,107,53,0.06));display:flex;align-items:center;justify-content:center;font-size:17px}
         .vm-tujuan-item h4{font-size:0.88rem;font-weight:600;margin-bottom:4px;color:var(--slate-800)}
@@ -276,7 +257,7 @@
         .mobile-menu a:hover{background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(59,130,246,0.08));color:var(--blue-600)}
 
         /* RESPONSIVE */
-        @media(max-width:1024px){.features-grid{grid-template-columns:1fr}.advantages-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr}.hero-content h2{font-size:2.6rem}.vm-hero-inner{flex-direction:column;text-align:center}}
+        @media(max-width:1024px){.features-grid{grid-template-columns:1fr}.advantages-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr}.hero-content h2{font-size:2.6rem}}
         @media(max-width:768px){
             .nav-links{display:none}.hamburger{display:flex}
             .navbar-inner{padding:0 16px;height:64px}.navbar-brand .brand-logo{width:38px;height:38px;border-radius:10px}.navbar-brand .brand-text h1{font-size:1rem}.navbar-brand .brand-text span{font-size:0.65rem}.navbar-brand{gap:10px}
@@ -290,7 +271,8 @@
             .footer-top{gap:28px;padding-bottom:28px}.footer-brand p{font-size:0.8rem}.footer-bottom{flex-direction:column;gap:10px;text-align:center}
             .mesh-bg .orb{opacity:0.06}
             .vm-misi-grid{grid-template-columns:1fr}
-            .vm-hero-bar{padding:28px 20px}
+            .vm-hero-bar{padding:32px 20px}
+            .vm-hero-text h3{font-size:1.4rem}
             .vm-visi-card{padding:24px 18px}
             .main-tab-btn{padding:8px 16px;font-size:0.82rem}
         }
@@ -306,6 +288,7 @@
             .footer-brand>div:first-child{flex-wrap:wrap}
             .main-tab-btn{padding:7px 14px;font-size:0.78rem}
             .main-tab-btn i{display:none}
+            .vm-hero-text h3{font-size:1.2rem}
         }
         @media(hover:none)and(pointer:coarse){.feature-item{-webkit-tap-highlight-color:transparent}.feature-item:active{background:var(--slate-100);transform:scale(0.98)}.btn:active{transform:scale(0.97)}.adv-card:active{transform:scale(0.97)}.feature-item:hover{transform:none}.adv-card:hover{transform:none}.feature-group:hover{transform:none}.vm-misi-card:hover{transform:none}.vm-tujuan-item:hover{transform:none}}
         ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--slate-100)}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan-500),var(--blue-500));border-radius:4px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--blue-500),var(--violet-500))}
@@ -319,7 +302,7 @@
 <nav class="navbar" id="navbar">
     <div class="navbar-inner">
         <a href="#" class="navbar-brand">
-            <img src="https://iili.io/fmUkBsf.md.png" alt="Logo SMKN 1 Maluku Tengah" class="brand-logo">
+            <img src="https://iili.io/qHQEwIj.png" alt="Logo SMKN 1 Maluku Tengah" class="brand-logo">
             <div class="brand-text"><h1>SmartKurikulum</h1><span>SMKN 1 Maluku Tengah</span></div>
         </a>
         <ul class="nav-links">
@@ -439,13 +422,16 @@
         <div class="main-tab-panel" id="tab-visi-misi">
             <div class="vm-panel">
 
-                <!-- Header banner -->
+                <!-- Header banner — centered, no logo -->
                 <div class="vm-hero-bar">
                     <div class="vm-hero-inner">
-                        <div class="vm-hero-logo"><img src="https://iili.io/qH7WfM7.md.png" alt="Logo SMKN 1 Maluku Tengah"></div>
                         <div class="vm-hero-text">
-                            <h3>SMK Negeri 1 Maluku Tengah</h3>
+                            <div class="vm-hero-badge"><i class="fas fa-circle"></i> Profil Sekolah</div>
+                            <h3>SMK Negeri 1 <span class="vm-highlight">Maluku Tengah</span></h3>
                             <p>Unggul, Terampil, Berkarakter, Berwawasan Global dan Siap Kerja di IDUKA — Menuju Visi 2029</p>
+                            <div class="vm-hero-decor">
+                                <span></span><span></span><span></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -561,7 +547,7 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;">
-                    <img src="https://iili.io/fmUkBsf.md.png" alt="Logo" style="width:44px;height:44px;object-fit:contain;filter:brightness(0.95) drop-shadow(0 2px 8px rgba(34,211,238,0.2));flex-shrink:0;">
+                    <img src="https://iili.io/qHQEwIj.png" alt="Logo" style="width:44px;height:44px;object-fit:contain;filter:brightness(0.95) drop-shadow(0 2px 8px rgba(34,211,238,0.2));flex-shrink:0;">
                     <h3 style="margin-bottom:0;">SmartKurikulum Center</h3>
                 </div>
                 <p>Portal kurikulum dan akademik terpadu milik SMK Negeri 1 Maluku Tengah. Dikelola oleh Wakasek Bidang Kurikulum.</p>
@@ -597,11 +583,9 @@
 </footer>
 
 <script>
-    // Navbar scroll
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10));
 
-    // Hamburger
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -615,21 +599,14 @@
         document.body.style.overflow = '';
     }
 
-    // Scroll reveal
     const observer = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
 
-    // Search
     document.getElementById('searchInput').addEventListener('input', function () {
         const q = this.value.toLowerCase().trim();
-        // If searching for visi/misi, switch to that tab
-        if (q && (q.includes('visi') || q.includes('misi'))) {
-            switchMainTab('visi-misi');
-            return;
-        }
-        // Otherwise ensure portal tab is active
+        if (q && (q.includes('visi') || q.includes('misi'))) { switchMainTab('visi-misi'); return; }
         if (q) switchMainTab('portal');
         const items = document.querySelectorAll('.feature-item');
         items.forEach(item => {
@@ -643,7 +620,6 @@
         });
     });
 
-    // Main Tabs (Portal / Visi Misi)
     function switchMainTab(name) {
         const targetId = 'tab-' + name;
         document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.target === targetId));
@@ -653,14 +629,12 @@
         btn.addEventListener('click', function() { switchMainTab(this.dataset.target.replace('tab-', '')); });
     });
 
-    // VM Sub Tabs
     document.querySelectorAll('.vm-sub-tabs').forEach(tabGroup => {
         tabGroup.querySelectorAll('.vm-sub-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const container = this.closest('.vm-sub-tabs').parentElement;
                 this.closest('.vm-sub-tabs').querySelectorAll('.vm-sub-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                // Find sibling panels
                 const panels = container.querySelectorAll(':scope > .vm-sub-panel');
                 panels.forEach(p => p.classList.remove('active'));
                 document.getElementById(this.dataset.target).classList.add('active');
@@ -668,7 +642,6 @@
         });
     });
 
-    // Active nav
     const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
