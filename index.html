@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartKurikulum Center — SMKN 1 Maluku Tengah</title>
+    <title>SmartKurikulum Center — SMK Negeri 1 Maluku Tengah</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* =============================================
+           ROOT VARIABLES — jangan ubah kecuali warna
+        ============================================= */
         :root {
             --grad-start:#0A1628;--grad-mid:#0D2137;--grad-end:#1A0A2E;
             --cyan-400:#22D3EE;--cyan-500:#06B6D4;--cyan-600:#0891B2;
@@ -31,7 +34,9 @@
         a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
         .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-        /* MESH BG */
+        /* =============================================
+           MESH BACKGROUND — animasi orb floating
+        ============================================= */
         .mesh-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
         .mesh-bg .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.12;animation:orbFloat 20s infinite ease-in-out}
         .mesh-bg .orb-1{width:600px;height:600px;background:linear-gradient(135deg,var(--cyan-400),var(--blue-500));top:-15%;left:-10%;animation-duration:22s}
@@ -39,7 +44,9 @@
         .mesh-bg .orb-3{width:400px;height:400px;background:linear-gradient(135deg,var(--emerald-400),var(--cyan-500));top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:25s;animation-delay:-10s}
         @keyframes orbFloat{0%,100%{transform:translate(0,0)scale(1)}25%{transform:translate(60px,-40px)scale(1.15)}50%{transform:translate(-30px,50px)scale(.9)}75%{transform:translate(40px,20px)scale(1.08)}}
 
-        /* NAVBAR */
+        /* =============================================
+           NAVBAR — sticky, blur backdrop
+        ============================================= */
         .navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.82);backdrop-filter:blur(24px)saturate(1.8);-webkit-backdrop-filter:blur(24px)saturate(1.8);border-bottom:1px solid rgba(226,232,240,0.6);transition:all var(--transition)}
         .navbar.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.06);background:rgba(255,255,255,0.92)}
         .navbar-inner{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:72px;max-width:1200px;margin:0 auto}
@@ -48,14 +55,17 @@
         .navbar-brand:hover .brand-logo{transform:scale(1.06)}
         .navbar-brand .brand-text h1{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;background:linear-gradient(135deg,var(--slate-900),var(--blue-600));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2}
         .navbar-brand .brand-text span{font-size:0.72rem;color:var(--slate-500);font-weight:400}
+        /* Nav links — sekarang termasuk Smart Kurikulum Tools */
         .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
-        .nav-links a{padding:8px 16px;font-size:0.88rem;font-weight:500;color:var(--slate-600);border-radius:var(--radius-sm);transition:all var(--transition)}
+        .nav-links a{padding:8px 14px;font-size:0.85rem;font-weight:500;color:var(--slate-600);border-radius:var(--radius-sm);transition:all var(--transition)}
         .nav-links a:hover,.nav-links a.active{color:var(--blue-600);background:linear-gradient(135deg,rgba(59,130,246,0.06),rgba(139,92,246,0.06))}
         .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1001}
         .hamburger span{display:block;width:22px;height:2px;background:var(--slate-700);border-radius:2px;transition:all var(--transition)}
         .hamburger.open span:nth-child(1){transform:translateY(7px)rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-7px)rotate(-45deg)}
 
-        /* HERO */
+        /* =============================================
+           HERO SECTION
+        ============================================= */
         .hero{position:relative;width:100%;min-height:580px;display:flex;align-items:center;justify-content:center;overflow:hidden}
         .hero-bg{position:absolute;inset:0;z-index:0}
         .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
@@ -73,7 +83,9 @@
         .hero-content p{font-size:1.1rem;color:rgba(255,255,255,0.65);max-width:560px;margin:0 auto 36px;line-height:1.7;animation:fadeInUp 0.7s 0.1s ease-out both}
         .hero-actions{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;animation:fadeInUp 0.7s 0.2s ease-out both}
 
-        /* BUTTONS */
+        /* =============================================
+           BUTTONS
+        ============================================= */
         .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:50px;font-size:0.95rem;font-weight:600;cursor:pointer;border:none;transition:all var(--transition);font-family:inherit;position:relative;overflow:hidden}
         .btn-primary{background:linear-gradient(135deg,var(--cyan-500),var(--blue-500),var(--indigo-500));background-size:200% 200%;color:var(--white);box-shadow:0 4px 20px rgba(59,130,246,0.35);animation:gradientShift 4s ease-in-out infinite}
         .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(59,130,246,0.5)}
@@ -82,7 +94,9 @@
         .btn-white{background:var(--white);color:var(--blue-600);font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
         .btn-white:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
 
-        /* HERO STATS */
+        /* =============================================
+           HERO STATS BAR
+        ============================================= */
         .hero-stats-bar{position:relative;z-index:2;background:linear-gradient(180deg,var(--grad-start),rgba(15,23,42,0.0));padding:0 24px 60px}
         .hero-stats{display:flex;justify-content:center;gap:48px;animation:fadeInUp 0.7s 0.35s ease-out both}
         .hero-stat{text-align:center}
@@ -90,7 +104,9 @@
         .hero-stat .label{font-size:0.78rem;color:var(--slate-500);margin-top:2px}
         .hero-divider{width:1px;background:linear-gradient(180deg,var(--slate-600),transparent);align-self:stretch}
 
-        /* SEARCH */
+        /* =============================================
+           SEARCH BAR
+        ============================================= */
         .search-section{margin-top:-28px;position:relative;z-index:10;padding:0 24px;margin-bottom:40px}
         .search-bar{max-width:640px;margin:0 auto;background:var(--white);border-radius:50px;display:flex;align-items:center;padding:6px 8px 6px 24px;box-shadow:var(--shadow-xl);border:2px solid transparent;transition:all var(--transition)}
         .search-bar:focus-within{border-color:var(--blue-500);box-shadow:var(--shadow-xl),0 0 0 4px rgba(59,130,246,0.08)}
@@ -99,7 +115,9 @@
         .search-btn{width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--cyan-500),var(--blue-500));color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all var(--transition);box-shadow:0 4px 12px rgba(6,182,212,0.3)}
         .search-btn:hover{transform:scale(1.08)}
 
-        /* SECTIONS */
+        /* =============================================
+           SECTION UMUM
+        ============================================= */
         .section{padding:72px 0;position:relative;z-index:1}
         .section-header{margin-bottom:44px}
         .section-label{display:inline-flex;align-items:center;gap:10px;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;background:linear-gradient(135deg,var(--cyan-500),var(--blue-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -107,7 +125,9 @@
         .section-title{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--slate-900);line-height:1.2}
         .section-subtitle{font-size:1rem;color:var(--slate-500);margin-top:10px;max-width:540px}
 
-        /* MAIN TABS */
+        /* =============================================
+           MAIN TABS (Portal Menu / Visi & Misi)
+        ============================================= */
         .main-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
         .main-tab-btn{padding:10px 22px;border:1px solid var(--slate-200);border-radius:50px;background:var(--white);color:var(--slate-500);font-size:0.88rem;font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit;display:inline-flex;align-items:center;gap:8px}
         .main-tab-btn i{font-size:0.8rem}
@@ -117,7 +137,9 @@
         .main-tab-panel.active{display:block;animation:tabFadeIn 0.45s ease}
         @keyframes tabFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-        /* FEATURES */
+        /* =============================================
+           FEATURES GRID (Administrasi / Guru / Nilai)
+        ============================================= */
         .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
         .feature-group{background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--slate-200);transition:all var(--transition);position:relative;overflow:hidden}
         .feature-group::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
@@ -149,13 +171,11 @@
         .guru .feature-item:hover .fi-arrow{color:var(--violet-500);transform:translateX(3px)}
         .nilai .feature-item:hover .fi-arrow{color:var(--rose-500);transform:translateX(3px)}
 
-        /* VISI MISI TAB PANEL */
+        /* =============================================
+           VISI MISI TAB PANEL
+        ============================================= */
         .vm-panel{max-width:1200px}
-        .vm-hero-bar{
-            background:linear-gradient(135deg,#0a1628,#0d2840,#1a0a2e);
-            border-radius:var(--radius-xl);padding:48px 48px;margin-bottom:28px;
-            position:relative;overflow:hidden;text-align:center;
-        }
+        .vm-hero-bar{background:linear-gradient(135deg,#0a1628,#0d2840,#1a0a2e);border-radius:var(--radius-xl);padding:48px 48px;margin-bottom:28px;position:relative;overflow:hidden;text-align:center}
         .vm-hero-bar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 400px 250px at 50% 0%,rgba(34,211,238,0.1),transparent),radial-gradient(ellipse 350px 200px at 50% 100%,rgba(240,165,0,0.08),transparent)}
         .vm-hero-bar::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02)1px,transparent 1px);background-size:40px 40px}
         .vm-hero-inner{position:relative;z-index:1;max-width:620px;margin:0 auto}
@@ -197,7 +217,9 @@
         .vm-tujuan-item h4{font-size:0.88rem;font-weight:600;margin-bottom:4px;color:var(--slate-800)}
         .vm-tujuan-item p{font-size:0.82rem;color:var(--slate-500)}
 
-        /* KEUNGGULAN */
+        /* =============================================
+           KEUNGGULAN SECTION
+        ============================================= */
         .advantages-section{background:linear-gradient(180deg,var(--white),var(--slate-50));border-top:1px solid var(--slate-200);border-bottom:1px solid var(--slate-200);position:relative;overflow:hidden}
         .advantages-section::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,0.06),transparent 70%);top:-200px;left:-100px;pointer-events:none}
         .advantages-section::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.06),transparent 70%);bottom:-150px;right:-80px;pointer-events:none}
@@ -213,7 +235,256 @@
         .adv-card h4{font-size:1rem;font-weight:700;color:var(--slate-900);margin-bottom:8px}
         .adv-card p{font-size:0.84rem;color:var(--slate-500);line-height:1.65}
 
-        /* CTA */
+        /* =============================================
+           SMART KURIKULUM TOOLS — Section BARU
+           Grid: 3 kolom (desktop) → 2 (tablet) → 1 (HP)
+        ============================================= */
+        .tools-section{
+            padding:80px 0;
+            position:relative;
+            z-index:1;
+            background:linear-gradient(180deg,var(--slate-50) 0%,rgba(248,250,252,0.6) 100%);
+            overflow:hidden;
+        }
+        /* Dekorasi latar belakang section tools */
+        .tools-section::before{
+            content:'';position:absolute;
+            width:600px;height:600px;border-radius:50%;
+            background:radial-gradient(circle,rgba(16,185,129,0.05),transparent 70%);
+            top:-200px;right:-150px;pointer-events:none;
+        }
+        .tools-section::after{
+            content:'';position:absolute;
+            width:450px;height:450px;border-radius:50%;
+            background:radial-gradient(circle,rgba(59,130,246,0.06),transparent 70%);
+            bottom:-150px;left:-100px;pointer-events:none;
+        }
+        /* Header section tools */
+        .tools-section-header{
+            text-align:center;
+            margin-bottom:52px;
+            position:relative;z-index:1;
+        }
+        .tools-badge{
+            display:inline-flex;align-items:center;gap:8px;
+            background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(59,130,246,0.08));
+            border:1px solid rgba(16,185,129,0.2);
+            padding:7px 20px;border-radius:50px;
+            font-size:0.75rem;font-weight:700;
+            color:var(--emerald-500);
+            letter-spacing:0.08em;text-transform:uppercase;
+            margin-bottom:16px;
+        }
+        .tools-badge i{font-size:0.6rem}
+        .tools-title{
+            font-family:'Playfair Display',serif;
+            font-size:2.4rem;font-weight:800;
+            color:var(--slate-900);line-height:1.15;
+            margin-bottom:14px;
+        }
+        .tools-title .tools-highlight{
+            background:linear-gradient(135deg,var(--emerald-500),var(--cyan-500),var(--blue-500));
+            background-size:200% 200%;
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            animation:gradientShift 5s ease-in-out infinite;
+        }
+        .tools-subtitle{
+            font-size:1rem;color:var(--slate-500);
+            max-width:520px;margin:0 auto;line-height:1.7;
+        }
+        /* Divider dekoratif */
+        .tools-divider{
+            display:flex;justify-content:center;align-items:center;gap:8px;
+            margin-top:20px;
+        }
+        .tools-divider span{height:3px;border-radius:2px}
+        .tools-divider span:nth-child(1){width:24px;background:var(--emerald-400);opacity:0.5}
+        .tools-divider span:nth-child(2){width:56px;background:linear-gradient(90deg,var(--emerald-400),var(--cyan-400));opacity:0.8}
+        .tools-divider span:nth-child(3){width:24px;background:var(--cyan-400);opacity:0.5}
+
+        /* Grid kartu tools — 3 kolom */
+        .tools-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:28px;
+            position:relative;z-index:1;
+        }
+
+        /* Kartu individu tool */
+        .tool-card{
+            background:var(--white);
+            border-radius:var(--radius-xl);
+            border:1px solid var(--slate-200);
+            padding:0;
+            overflow:hidden;
+            transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+            position:relative;
+            display:flex;flex-direction:column;
+        }
+        /* Garis atas berwarna per kartu */
+        .tool-card::before{
+            content:'';position:absolute;top:0;left:0;right:0;height:4px;
+            border-radius:0;
+            transition:height 0.3s ease;
+            z-index:1;
+        }
+        .tool-card:nth-child(1)::before{background:linear-gradient(90deg,var(--emerald-400),var(--cyan-500),var(--blue-400))}
+        .tool-card:nth-child(2)::before{background:linear-gradient(90deg,var(--blue-400),var(--indigo-400),var(--violet-400))}
+        .tool-card:nth-child(3)::before{background:linear-gradient(90deg,var(--amber-400),var(--rose-400),var(--fuchsia-400))}
+        /* Hover effect keseluruhan kartu */
+        .tool-card:hover{
+            transform:translateY(-10px);
+            border-color:transparent;
+        }
+        .tool-card:nth-child(1):hover{box-shadow:0 20px 50px rgba(16,185,129,0.14),0 0 0 1px rgba(16,185,129,0.12)}
+        .tool-card:nth-child(2):hover{box-shadow:0 20px 50px rgba(99,102,241,0.14),0 0 0 1px rgba(99,102,241,0.12)}
+        .tool-card:nth-child(3):hover{box-shadow:0 20px 50px rgba(244,63,94,0.12),0 0 0 1px rgba(244,63,94,0.12)}
+
+        /* Area ikon + judul di atas kartu */
+        .tool-card-top{
+            padding:32px 28px 20px;
+            display:flex;flex-direction:column;
+            align-items:flex-start;
+            flex:1;
+        }
+        .tool-icon-wrap{
+            width:64px;height:64px;
+            border-radius:18px;
+            display:flex;align-items:center;justify-content:center;
+            font-size:28px;
+            margin-bottom:20px;
+            position:relative;
+            flex-shrink:0;
+            transition:transform 0.3s ease;
+        }
+        .tool-card:hover .tool-icon-wrap{transform:scale(1.08) rotate(-3deg)}
+        .tool-card:nth-child(1) .tool-icon-wrap{
+            background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(34,211,238,0.12));
+            color:var(--emerald-500);
+        }
+        .tool-card:nth-child(2) .tool-icon-wrap{
+            background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(99,102,241,0.12));
+            color:var(--indigo-500);
+        }
+        .tool-card:nth-child(3) .tool-icon-wrap{
+            background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(244,63,94,0.1));
+            color:var(--amber-500);
+        }
+
+        /* Judul tool */
+        .tool-card h3{
+            font-size:1.18rem;font-weight:700;
+            color:var(--slate-900);
+            margin-bottom:10px;
+            line-height:1.3;
+        }
+        /* Deskripsi tool */
+        .tool-card p{
+            font-size:0.88rem;color:var(--slate-500);
+            line-height:1.7;
+            flex:1;
+        }
+
+        /* Badge fitur kecil di dalam kartu */
+        .tool-features{
+            display:flex;flex-wrap:wrap;gap:6px;
+            margin-top:16px;
+        }
+        .tool-feature-tag{
+            display:inline-flex;align-items:center;gap:5px;
+            padding:4px 10px;border-radius:20px;
+            font-size:0.72rem;font-weight:600;
+            background:var(--slate-100);color:var(--slate-600);
+            transition:all 0.2s;
+        }
+        .tool-card:nth-child(1) .tool-feature-tag{background:rgba(16,185,129,0.08);color:var(--emerald-500)}
+        .tool-card:nth-child(2) .tool-feature-tag{background:rgba(59,130,246,0.08);color:var(--blue-600)}
+        .tool-card:nth-child(3) .tool-feature-tag{background:rgba(245,158,11,0.08);color:var(--amber-500)}
+
+        /* Area bawah kartu — tombol buka */
+        .tool-card-footer{
+            padding:20px 28px 28px;
+            border-top:1px solid var(--slate-100);
+            background:linear-gradient(180deg,transparent,var(--slate-50));
+        }
+        /* Tombol Buka Aplikasi */
+        .btn-tool{
+            display:inline-flex;align-items:center;gap:10px;
+            width:100%;
+            padding:13px 24px;
+            border-radius:50px;
+            font-size:0.88rem;font-weight:700;
+            cursor:pointer;border:none;
+            font-family:inherit;
+            justify-content:center;
+            transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+            position:relative;overflow:hidden;
+        }
+        /* Shimmer overlay on hover */
+        .btn-tool::after{
+            content:'';position:absolute;
+            top:0;left:-100%;width:60%;height:100%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+            transition:left 0.5s ease;
+        }
+        .btn-tool:hover::after{left:140%}
+        /* Warna per tombol */
+        .tool-card:nth-child(1) .btn-tool{
+            background:linear-gradient(135deg,var(--emerald-500),var(--cyan-500));
+            color:var(--white);
+            box-shadow:0 4px 18px rgba(16,185,129,0.3);
+        }
+        .tool-card:nth-child(1) .btn-tool:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 28px rgba(16,185,129,0.45);
+        }
+        .tool-card:nth-child(2) .btn-tool{
+            background:linear-gradient(135deg,var(--blue-500),var(--indigo-500));
+            color:var(--white);
+            box-shadow:0 4px 18px rgba(59,130,246,0.3);
+        }
+        .tool-card:nth-child(2) .btn-tool:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 28px rgba(59,130,246,0.45);
+        }
+        .tool-card:nth-child(3) .btn-tool{
+            background:linear-gradient(135deg,var(--amber-500),var(--rose-500));
+            color:var(--white);
+            box-shadow:0 4px 18px rgba(245,158,11,0.3);
+        }
+        .tool-card:nth-child(3) .btn-tool:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 28px rgba(245,158,11,0.4);
+        }
+        /* Ikon panah di tombol */
+        .btn-tool .btn-arrow{
+            width:28px;height:28px;
+            border-radius:50%;
+            background:rgba(255,255,255,0.2);
+            display:flex;align-items:center;justify-content:center;
+            font-size:0.75rem;
+            transition:transform 0.3s ease;
+            flex-shrink:0;
+        }
+        .btn-tool:hover .btn-arrow{transform:translateX(4px)}
+
+        /* Nomor dekoratif di pojok kartu */
+        .tool-card-num{
+            position:absolute;
+            top:20px;right:24px;
+            font-family:'Playfair Display',serif;
+            font-size:3.5rem;font-weight:900;
+            line-height:1;
+            opacity:0.04;
+            color:var(--slate-900);
+            pointer-events:none;
+            transition:opacity 0.3s;
+        }
+        .tool-card:hover .tool-card-num{opacity:0.07}
+
+        /* =============================================
+           CTA SECTION
+        ============================================= */
         .cta-section{padding:40px 0 80px}
         .cta-banner{border-radius:var(--radius-2xl);padding:64px 48px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#0A1628,#0D2840,#1A0A2E,#0E1A3A);background-size:400% 400%;animation:gradientShift 8s ease-in-out infinite}
         .cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 350px 250px at 75% 20%,rgba(34,211,238,0.2),transparent),radial-gradient(ellipse 300px 250px at 25% 80%,rgba(139,92,246,0.18),transparent),radial-gradient(ellipse 200px 200px at 50% 50%,rgba(96,165,250,0.1),transparent)}
@@ -222,7 +493,9 @@
         .cta-banner p{color:rgba(255,255,255,0.6);margin-bottom:32px;font-size:1rem;position:relative;z-index:1}
         .cta-banner .btn{position:relative;z-index:1}
 
-        /* FOOTER */
+        /* =============================================
+           FOOTER
+        ============================================= */
         footer{background:var(--slate-900);color:var(--slate-400);padding:52px 0 0;position:relative;overflow:hidden}
         footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan-400),var(--blue-500),var(--violet-500),var(--fuchsia-400))}
         .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06)}
@@ -241,7 +514,9 @@
         .footer-bottom-links a{color:var(--slate-500);transition:color var(--transition)}
         .footer-bottom-links a:hover{color:var(--slate-300)}
 
-        /* ANIMATIONS */
+        /* =============================================
+           ANIMASI UMUM
+        ============================================= */
         @keyframes fadeInUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
         @keyframes fadeInDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
         .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
@@ -250,17 +525,32 @@
         .stagger.visible>*:nth-child(1){transition-delay:.05s}.stagger.visible>*:nth-child(2){transition-delay:.15s}.stagger.visible>*:nth-child(3){transition-delay:.25s}.stagger.visible>*:nth-child(4){transition-delay:.35s}
         .stagger.visible>*{opacity:1;transform:translateY(0)}
 
-        /* MOBILE MENU */
+        /* =============================================
+           MOBILE MENU OVERLAY
+        ============================================= */
         .mobile-menu{display:none;position:fixed;inset:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:8px}
         .mobile-menu.active{display:flex}
         .mobile-menu a{font-size:1.2rem;font-weight:600;color:var(--slate-800);padding:14px 36px;border-radius:var(--radius-md);transition:all var(--transition)}
         .mobile-menu a:hover{background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(59,130,246,0.08));color:var(--blue-600)}
 
-        /* RESPONSIVE */
-        @media(max-width:1024px){.features-grid{grid-template-columns:1fr}.advantages-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr}.hero-content h2{font-size:2.6rem}}
+        /* =============================================
+           RESPONSIVE — Tablet & HP
+        ============================================= */
+        @media(max-width:1024px){
+            .features-grid{grid-template-columns:1fr}
+            .advantages-grid{grid-template-columns:repeat(2,1fr)}
+            .footer-top{grid-template-columns:1fr}
+            .hero-content h2{font-size:2.6rem}
+            /* Tools grid: 2 kolom di tablet */
+            .tools-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+        }
         @media(max-width:768px){
             .nav-links{display:none}.hamburger{display:flex}
-            .navbar-inner{padding:0 16px;height:64px}.navbar-brand .brand-logo{width:38px;height:38px;border-radius:10px}.navbar-brand .brand-text h1{font-size:1rem}.navbar-brand .brand-text span{font-size:0.65rem}.navbar-brand{gap:10px}
+            .navbar-inner{padding:0 16px;height:64px}
+            .navbar-brand .brand-logo{width:38px;height:38px;border-radius:10px}
+            .navbar-brand .brand-text h1{font-size:1rem}
+            .navbar-brand .brand-text span{font-size:0.65rem}
+            .navbar-brand{gap:10px}
             .hero{min-height:420px}.hero-content{padding:48px 18px 36px}.hero-content h2{font-size:1.9rem}.hero-content p{font-size:0.9rem;margin-bottom:28px}.hero-badge{font-size:0.72rem;padding:5px 14px;margin-bottom:20px}
             .hero-stats-bar{padding:0 16px 40px}.hero-stats{gap:20px}.hero-stat .num{font-size:1.5rem}.hero-stat .label{font-size:0.7rem}
             .search-section{margin-top:-24px;padding:0 16px;margin-bottom:28px}.search-bar{padding:4px 6px 4px 18px}.search-bar input{font-size:0.88rem}.search-btn{width:40px;height:40px}
@@ -275,6 +565,14 @@
             .vm-hero-text h3{font-size:1.4rem}
             .vm-visi-card{padding:24px 18px}
             .main-tab-btn{padding:8px 16px;font-size:0.82rem}
+            /* Tools: 1 kolom di HP */
+            .tools-grid{grid-template-columns:1fr;gap:18px}
+            .tools-section{padding:52px 0}
+            .tools-title{font-size:1.8rem}
+            .tool-card-top{padding:24px 22px 16px}
+            .tool-card-footer{padding:16px 22px 22px}
+            .tool-icon-wrap{width:54px;height:54px;font-size:24px}
+            .tool-card h3{font-size:1.05rem}
         }
         @media(max-width:480px){
             .navbar-inner{height:58px;padding:0 12px}.navbar-brand .brand-logo{width:34px;height:34px;border-radius:8px}.navbar-brand .brand-text h1{font-size:0.9rem}.navbar-brand{gap:8px}
@@ -289,58 +587,91 @@
             .main-tab-btn{padding:7px 14px;font-size:0.78rem}
             .main-tab-btn i{display:none}
             .vm-hero-text h3{font-size:1.2rem}
+            .tools-title{font-size:1.5rem}
+            .tools-subtitle{font-size:0.88rem}
         }
-        @media(hover:none)and(pointer:coarse){.feature-item{-webkit-tap-highlight-color:transparent}.feature-item:active{background:var(--slate-100);transform:scale(0.98)}.btn:active{transform:scale(0.97)}.adv-card:active{transform:scale(0.97)}.feature-item:hover{transform:none}.adv-card:hover{transform:none}.feature-group:hover{transform:none}.vm-misi-card:hover{transform:none}.vm-tujuan-item:hover{transform:none}}
+        /* Touch device — hapus hover transform */
+        @media(hover:none)and(pointer:coarse){
+            .feature-item{-webkit-tap-highlight-color:transparent}.feature-item:active{background:var(--slate-100);transform:scale(0.98)}.btn:active{transform:scale(0.97)}.adv-card:active{transform:scale(0.97)}.feature-item:hover{transform:none}.adv-card:hover{transform:none}.feature-group:hover{transform:none}.vm-misi-card:hover{transform:none}.vm-tujuan-item:hover{transform:none}
+            .tool-card:hover{transform:none;box-shadow:none}.tool-card:active{transform:scale(0.98)}.btn-tool:hover{transform:none}.btn-tool:active{transform:scale(0.97)}
+        }
+        /* Custom scrollbar */
         ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--slate-100)}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan-500),var(--blue-500));border-radius:4px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--blue-500),var(--violet-500))}
     </style>
 </head>
 <body>
 
-<div class="mesh-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<!-- ==========================================
+     MESH BACKGROUND DEKORATIF
+========================================== -->
+<div class="mesh-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
 
-<!-- NAVBAR -->
+<!-- ==========================================
+     NAVBAR — Ditambahkan menu "Smart Kurikulum Tools"
+========================================== -->
 <nav class="navbar" id="navbar">
     <div class="navbar-inner">
         <a href="#" class="navbar-brand">
             <img src="https://iili.io/qHQEwIj.png" alt="Logo SMKN 1 Maluku Tengah" class="brand-logo">
-            <div class="brand-text"><h1>SmartKurikulum</h1><span>SMKN 1 Maluku Tengah</span></div>
+            <div class="brand-text">
+                <h1>SmartKurikulum</h1>
+                <span>SMKN 1 Maluku Tengah</span>
+            </div>
         </a>
+        <!-- Nav Links — termasuk menu baru "Tools" -->
         <ul class="nav-links">
             <li><a href="#" class="active">Beranda</a></li>
             <li><a href="#fitur">Portal</a></li>
+            <li><a href="#visi-misi-section">Visi &amp; Misi</a></li>
+            <li><a href="#smart-tools">Smart Kurikulum Tools</a></li><!-- MENU BARU -->
             <li><a href="#keunggulan">Keunggulan</a></li>
             <li><a href="#kontak">Kontak</a></li>
         </ul>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
 
-<!-- MOBILE MENU -->
+<!-- ==========================================
+     MOBILE MENU OVERLAY
+========================================== -->
 <div class="mobile-menu" id="mobileMenu">
     <a href="#" onclick="closeMenu()">Beranda</a>
     <a href="#fitur" onclick="closeMenu()">Portal</a>
+    <a href="#visi-misi-section" onclick="closeMenu()">Visi &amp; Misi</a>
+    <a href="#smart-tools" onclick="closeMenu()">Smart Kurikulum Tools</a><!-- MENU BARU -->
     <a href="#keunggulan" onclick="closeMenu()">Keunggulan</a>
     <a href="#kontak" onclick="closeMenu()">Kontak</a>
 </div>
 
-<!-- HERO -->
+<!-- ==========================================
+     1. HERO — Header Website + Identitas Sekolah
+========================================== -->
 <section class="hero">
-    <div class="hero-bg"><img src="https://iili.io/fmU1FGn.md.jpg" alt="SMKN 1 Maluku Tengah"></div>
+    <div class="hero-bg">
+        <img src="https://iili.io/fmU1FGn.md.jpg" alt="SMKN 1 Maluku Tengah">
+    </div>
     <div class="hero-aurora"></div>
     <div class="hero-content">
         <div class="hero-badge"><i class="fas fa-circle"></i> Tahun Ajaran 2025 / 2026</div>
         <h2><span class="text-gradient">SmartKurikulum</span> Center</h2>
-        <p>Portal Kurikulum & Akademik Terpadu SMK Negeri 1 Maluku Tengah — Akses cepat seluruh informasi kurikulum di satu tempat.</p>
+        <p>Portal Kurikulum &amp; Akademik Terpadu SMK Negeri 1 Maluku Tengah — Akses cepat seluruh informasi kurikulum di satu tempat.</p>
         <div class="hero-actions">
             <a href="#fitur" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Masuk Portal</a>
-            <a href="#fitur" class="btn btn-secondary" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)"><i class="fas fa-bullseye"></i> Visi & Misi</a>
+            <a href="#visi-misi-section" class="btn btn-secondary"><i class="fas fa-bullseye"></i> Visi &amp; Misi</a>
+            <a href="#smart-tools" class="btn btn-secondary"><i class="fas fa-tools"></i> Smart Kurikulum Tools</a>
         </div>
     </div>
 </section>
 
 <div class="hero-stats-bar">
     <div class="hero-stats">
-        <div class="hero-stat"><div class="num">14+</div><div class="label">Menu Terintegrasi</div></div>
+        <div class="hero-stat"><div class="num">17+</div><div class="label">Menu Terintegrasi</div></div>
         <div class="hero-divider"></div>
         <div class="hero-stat"><div class="num">100%</div><div class="label">Akses Digital</div></div>
         <div class="hero-divider"></div>
@@ -348,32 +679,39 @@
     </div>
 </div>
 
-<!-- SEARCH -->
+<!-- ==========================================
+     SEARCH BAR
+========================================== -->
 <div class="search-section">
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Cari menu… (Contoh: SK, Jadwal, Nilai, Visi Misi)">
+        <input type="text" id="searchInput" placeholder="Cari menu… (Contoh: SK, Jadwal, Nilai, Visi Misi, Ledger, SKL)">
         <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
     </div>
 </div>
 
-<!-- FITUR UTAMA -->
+<!-- ==========================================
+     2. FITUR PORTAL + 3. VISI MISI (Tab)
+     Urutan: Portal Menu | Visi & Misi
+========================================== -->
 <section class="section" id="fitur">
     <div class="container">
         <div class="section-header reveal">
             <div class="section-label">Fitur Portal</div>
             <h2 class="section-title">Semua yang Anda Butuhkan</h2>
-            <p class="section-subtitle">Akses dokumen kurikulum, data guru, jadwal, penilaian, serta visi & misi dalam satu portal terintegrasi.</p>
+            <p class="section-subtitle">Akses dokumen kurikulum, data guru, jadwal, penilaian, serta visi &amp; misi dalam satu portal terintegrasi.</p>
         </div>
 
         <!-- MAIN TABS -->
         <div class="main-tabs reveal" id="mainTabs">
             <button class="main-tab-btn active" data-target="tab-portal"><i class="fas fa-th-large"></i> Portal Menu</button>
-            <button class="main-tab-btn" data-target="tab-visi-misi"><i class="fas fa-bullseye"></i> Visi & Misi</button>
+            <button class="main-tab-btn" data-target="tab-visi-misi"><i class="fas fa-bullseye"></i> Visi &amp; Misi</button>
         </div>
 
-        <!-- TAB: PORTAL -->
+        <!-- ---- TAB: PORTAL MENU ---- -->
         <div class="main-tab-panel active" id="tab-portal">
             <div class="features-grid stagger" id="administrasi">
+
+                <!-- KOLOM 1: Administrasi Kurikulum -->
                 <div class="feature-group admin reveal">
                     <div class="feature-group-header">
                         <div class="feature-group-icon"><i class="fas fa-folder-open"></i></div>
@@ -381,48 +719,121 @@
                         <p>Dokumen kurikulum, kalender akademik, dan jadwal pembelajaran.</p>
                     </div>
                     <div class="feature-list">
-                        <a href="https://docs.google.com/document/d/15mBAtdmtpNIgLSD3c3YG7oiAxdieLiyL/edit?usp=sharing&ouid=109617087844226844570&rtpof=true&sd=true" target="_blank" class="feature-item" data-search="kurikulum sekolah dokumen ksp"><div class="fi-icon"><i class="fas fa-book-open"></i></div><div class="fi-text"><h4>Kurikulum Sekolah</h4><span>Dokumen KSP Terbaru</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://drive.google.com/file/d/1OskwfvMyV08lREJ6MNAoCeg3NOlmWczx/view?usp=sharing" target="_blank" class="feature-item" data-search="sk pembagian tugas mengajar"><div class="fi-icon"><i class="fas fa-file-contract"></i></div><div class="fi-text"><h4>SK Pembagian Tugas</h4><span>Dokumen Resmi SK Mengajar</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://alexbahy-tech.github.io/pembagian-jam-mengajar/" target="_blank" class="feature-item" data-search="pembagian jam jadwal mengajar guru"><div class="fi-icon"><i class="fas fa-clock"></i></div><div class="fi-text"><h4>Pembagian Jam</h4><span>Jadwal Mengajar Guru</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://alexbahy-tech.github.io/portal-jadwal-smkn1mt/" target="_blank" class="feature-item" data-search="jadwal pelajaran interaktif"><div class="fi-icon"><i class="fas fa-clipboard-list"></i></div><div class="fi-text"><h4>Jadwal Pelajaran</h4><span>Jadwal Interaktif</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://alexbahy-tech.github.io/kalender-pendidikan/" target="_blank" class="feature-item" data-search="kalender pendidikan tahun ajaran"><div class="fi-icon"><i class="far fa-calendar-alt"></i></div><div class="fi-text"><h4>Kalender Pendidikan</h4><span>Tahun Ajaran 2025/2026</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://smkn1malteng.my.canva.site/bs8mcv8majfq0n7r" target="_blank" class="feature-item" data-search="absensi mapel bahasa inggris"><div class="fi-icon"><i class="fas fa-user-check"></i></div><div class="fi-text"><h4>Absensi Mapel</h4><span>Mapel Bahasa Inggris</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://docs.google.com/document/d/15mBAtdmtpNIgLSD3c3YG7oiAxdieLiyL/edit?usp=sharing&ouid=109617087844226844570&rtpof=true&sd=true" target="_blank" class="feature-item" data-search="kurikulum sekolah dokumen ksp">
+                            <div class="fi-icon"><i class="fas fa-book-open"></i></div>
+                            <div class="fi-text"><h4>Kurikulum Sekolah</h4><span>Dokumen KSP Terbaru</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1OskwfvMyV08lREJ6MNAoCeg3NOlmWczx/view?usp=sharing" target="_blank" class="feature-item" data-search="sk pembagian tugas mengajar">
+                            <div class="fi-icon"><i class="fas fa-file-contract"></i></div>
+                            <div class="fi-text"><h4>SK Pembagian Tugas</h4><span>Dokumen Resmi SK Mengajar</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://alexbahy-tech.github.io/pembagian-jam-mengajar/" target="_blank" class="feature-item" data-search="pembagian jam jadwal mengajar guru">
+                            <div class="fi-icon"><i class="fas fa-clock"></i></div>
+                            <div class="fi-text"><h4>Pembagian Jam</h4><span>Jadwal Mengajar Guru</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://alexbahy-tech.github.io/portal-jadwal-smkn1mt/" target="_blank" class="feature-item" data-search="jadwal pelajaran interaktif">
+                            <div class="fi-icon"><i class="fas fa-clipboard-list"></i></div>
+                            <div class="fi-text"><h4>Jadwal Pelajaran</h4><span>Jadwal Interaktif</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://alexbahy-tech.github.io/kalender-pendidikan/" target="_blank" class="feature-item" data-search="kalender pendidikan tahun ajaran">
+                            <div class="fi-icon"><i class="far fa-calendar-alt"></i></div>
+                            <div class="fi-text"><h4>Kalender Pendidikan</h4><span>Tahun Ajaran 2025/2026</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://smkn1malteng.my.canva.site/bs8mcv8majfq0n7r" target="_blank" class="feature-item" data-search="absensi mapel bahasa inggris">
+                            <div class="fi-icon"><i class="fas fa-user-check"></i></div>
+                            <div class="fi-text"><h4>Absensi Mapel</h4><span>Mapel Bahasa Inggris</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
                     </div>
                 </div>
+
+                <!-- KOLOM 2: Guru & Kelas -->
                 <div class="feature-group guru reveal" id="guru">
                     <div class="feature-group-header">
                         <div class="feature-group-icon"><i class="fas fa-chalkboard-user"></i></div>
-                        <h3>Guru & Kelas</h3>
+                        <h3>Guru &amp; Kelas</h3>
                         <p>Data guru, wali kelas, monitoring kehadiran, dan perangkat pembelajaran daring.</p>
                     </div>
                     <div class="feature-list">
-                        <a href="https://smkn1malteng.my.canva.site/dagwxsv7pai" target="_blank" class="feature-item" data-search="data guru wali kelas database"><div class="fi-icon"><i class="fas fa-id-card"></i></div><div class="fi-text"><h4>Data Guru Wali</h4><span>Database Wali Kelas</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://alexbahy-tech.github.io/aplikasi-monitoring-guru/" target="_blank" class="feature-item" data-search="monitoring kehadiran guru absensi rekap"><div class="fi-icon"><i class="fas fa-user-check"></i></div><div class="fi-text"><h4>Monitoring Kehadiran Guru</h4><span>Sistem Absensi & Rekapitulasi</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://smkn1malteng.my.canva.site/dagwxrsiwr8" target="_blank" class="feature-item" data-search="tupoksi guru wali tugas fungsi"><div class="fi-icon"><i class="fas fa-list-check"></i></div><div class="fi-text"><h4>Tupoksi Guru Wali</h4><span>Tugas & Fungsi</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://smkn1malteng.my.canva.site/dagztogsf-q" target="_blank" class="feature-item" data-search="aplikasi guru wali penunjang"><div class="fi-icon"><i class="fas fa-mobile-alt"></i></div><div class="fi-text"><h4>Aplikasi Guru Wali</h4><span>Aplikasi Penunjang</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://alexbahy34-code.github.io/perangkat-online-SMK/" target="_blank" class="feature-item" data-search="perangkat online pembelajaran daring"><div class="fi-icon"><i class="fas fa-wifi"></i></div><div class="fi-text"><h4>Perangkat Online</h4><span>Pembelajaran Daring</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://smkn1malteng.my.canva.site/dagwxsv7pai" target="_blank" class="feature-item" data-search="data guru wali kelas database">
+                            <div class="fi-icon"><i class="fas fa-id-card"></i></div>
+                            <div class="fi-text"><h4>Data Guru Wali</h4><span>Database Wali Kelas</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://alexbahy-tech.github.io/aplikasi-monitoring-guru/" target="_blank" class="feature-item" data-search="monitoring kehadiran guru absensi rekap">
+                            <div class="fi-icon"><i class="fas fa-user-check"></i></div>
+                            <div class="fi-text"><h4>Monitoring Kehadiran Guru</h4><span>Sistem Absensi &amp; Rekapitulasi</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://smkn1malteng.my.canva.site/dagwxrsiwr8" target="_blank" class="feature-item" data-search="tupoksi guru wali tugas fungsi">
+                            <div class="fi-icon"><i class="fas fa-list-check"></i></div>
+                            <div class="fi-text"><h4>Tupoksi Guru Wali</h4><span>Tugas &amp; Fungsi</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://smkn1malteng.my.canva.site/dagztogsf-q" target="_blank" class="feature-item" data-search="aplikasi guru wali penunjang">
+                            <div class="fi-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="fi-text"><h4>Aplikasi Guru Wali</h4><span>Aplikasi Penunjang</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://alexbahy34-code.github.io/perangkat-online-SMK/" target="_blank" class="feature-item" data-search="perangkat online pembelajaran daring">
+                            <div class="fi-icon"><i class="fas fa-wifi"></i></div>
+                            <div class="fi-text"><h4>Perangkat Online</h4><span>Pembelajaran Daring</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
                     </div>
                 </div>
+
+                <!-- KOLOM 3: Penilaian & Pelaporan -->
                 <div class="feature-group nilai reveal" id="penilaian">
                     <div class="feature-group-header">
                         <div class="feature-group-icon"><i class="fas fa-chart-pie"></i></div>
-                        <h3>Penilaian & Pelaporan</h3>
+                        <h3>Penilaian &amp; Pelaporan</h3>
                         <p>Input nilai, rekap, dan monitoring pengisian rapor semester.</p>
                     </div>
                     <div class="feature-list">
-                        <a href="https://alexbahy-tech.github.io/daftar-nilai-US-2026/" target="_blank" class="feature-item" data-search="daftar nilai Ujian Sekolah 2026"><div class="fi-icon"><i class="fas fa-file-signature"></i></div><div class="fi-text"><h4>Daftar Nilai Ujian Sekolah 2026</h4><span>Semester Ganjil</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://script.google.com/macros/s/AKfycbw4vDCff5BTE2DurxfF1dwKF7JeMTzHKFNWrp9S_jgrcl7ZSqYPnKoBpwnLkQsVMJX7/exec" target="_blank" class="feature-item" data-search="laporan input monitoring pengisian nilai dashboard"><div class="fi-icon"><i class="fas fa-tachometer-alt"></i></div><div class="fi-text"><h4>Dashboard Penginputan</h4><span>Monitoring Progress Input Nilai</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
-                        <a href="https://alexbahy-tech.github.io/Portal-ledger-Rapor-Semester-Ganjil-2025-2026/" target="_blank" class="feature-item" data-search="portal ledger rapor semester ganjil"><div class="fi-icon"><i class="fas fa-file-alt"></i></div><div class="fi-text"><h4>Portal Ledger Rapor</h4><span>Ledger Rapor Semester Ganjil 2025/2026</span></div><i class="fas fa-chevron-right fi-arrow"></i></a>
+                        <a href="https://alexbahy-tech.github.io/daftar-nilai-US-2026/" target="_blank" class="feature-item" data-search="daftar nilai ujian sekolah 2026 us">
+                            <div class="fi-icon"><i class="fas fa-file-signature"></i></div>
+                            <div class="fi-text"><h4>Daftar Nilai Ujian Sekolah 2026</h4><span>Semester Ganjil</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://script.google.com/macros/s/AKfycbw4vDCff5BTE2DurxfF1dwKF7JeMTzHKFNWrp9S_jgrcl7ZSqYPnKoBpwnLkQsVMJX7/exec" target="_blank" class="feature-item" data-search="laporan input monitoring pengisian nilai dashboard">
+                            <div class="fi-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="fi-text"><h4>Dashboard Penginputan</h4><span>Monitoring Progress Input Nilai</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <a href="https://alexbahy-tech.github.io/Portal-ledger-Rapor-Semester-Ganjil-2025-2026/" target="_blank" class="feature-item" data-search="portal ledger rapor semester ganjil">
+                            <div class="fi-icon"><i class="fas fa-file-alt"></i></div>
+                            <div class="fi-text"><h4>Portal Ledger Rapor</h4><span>Ledger Rapor Semester Ganjil 2025/2026</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <!-- Tambahan: link ke Ledger Semester 1-5 di Portal Menu -->
+                        <a href="https://alexbahy-tech.github.io/ledger-sem-1---6-/" target="_blank" class="feature-item" data-search="ledger nilai semester 1 2 3 4 5 6">
+                            <div class="fi-icon"><i class="fas fa-table"></i></div>
+                            <div class="fi-text"><h4>Ledger Nilai Semester 1–5</h4><span>Rekap Lengkap Per Semester</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
+                        <!-- Tambahan: SKL Generator di Portal Menu -->
+                        <a href="https://alexbahy-tech.github.io/SKL-generator/" target="_blank" class="feature-item" data-search="skl surat keterangan lulus generator otomatis">
+                            <div class="fi-icon"><i class="fas fa-certificate"></i></div>
+                            <div class="fi-text"><h4>SKL Generator</h4><span>Surat Keterangan Lulus Otomatis</span></div>
+                            <i class="fas fa-chevron-right fi-arrow"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- TAB: VISI & MISI -->
+            </div><!-- /features-grid -->
+        </div><!-- /tab-portal -->
+
+        <!-- ---- TAB: VISI & MISI ---- -->
         <div class="main-tab-panel" id="tab-visi-misi">
             <div class="vm-panel">
 
-                <!-- Header banner — centered, no logo -->
+                <!-- Header Banner Visi Misi -->
                 <div class="vm-hero-bar">
                     <div class="vm-hero-inner">
                         <div class="vm-hero-text">
@@ -436,7 +847,7 @@
                     </div>
                 </div>
 
-                <!-- Sub tabs -->
+                <!-- Sub Tabs Visi / Misi / Kurikulum / Tujuan -->
                 <div class="vm-sub-tabs" id="vmSubTabs">
                     <button class="vm-sub-btn active" data-target="vm-visi">Visi Sekolah</button>
                     <button class="vm-sub-btn" data-target="vm-misi">Misi Sekolah</button>
@@ -444,7 +855,7 @@
                     <button class="vm-sub-btn" data-target="vm-tujuan">Tujuan</button>
                 </div>
 
-                <!-- Visi Sekolah -->
+                <!-- Sub Panel: Visi -->
                 <div class="vm-sub-panel active" id="vm-visi">
                     <div class="vm-visi-card">
                         <div class="vm-visi-icon">🎯</div>
@@ -452,19 +863,19 @@
                     </div>
                 </div>
 
-                <!-- Misi Sekolah -->
+                <!-- Sub Panel: Misi -->
                 <div class="vm-sub-panel" id="vm-misi">
                     <div class="vm-misi-grid">
-                        <div class="vm-misi-card"><div class="vm-misi-num">01</div><h3>Bimbingan & Pelatihan</h3><p>Membimbing dan melatih murid agar berkarakter, berprestasi, dan kompeten sesuai kebutuhan IDUKA.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">01</div><h3>Bimbingan &amp; Pelatihan</h3><p>Membimbing dan melatih murid agar berkarakter, berprestasi, dan kompeten sesuai kebutuhan IDUKA.</p></div>
                         <div class="vm-misi-card"><div class="vm-misi-num">02</div><h3>Sertifikasi Profesi</h3><p>Meningkatkan kompetensi lulusan melalui Lembaga Sertifikasi Profesi.</p></div>
                         <div class="vm-misi-card"><div class="vm-misi-num">03</div><h3>Pembelajaran Optimal</h3><p>Mengembangkan potensi akademik siswa secara optimal melalui pembelajaran yang aktif dan menyenangkan.</p></div>
-                        <div class="vm-misi-card"><div class="vm-misi-num">04</div><h3>Studi & Karir</h3><p>Mempersiapkan siswa untuk melanjutkan studi ke jenjang yang lebih tinggi atau memasuki dunia kerja.</p></div>
-                        <div class="vm-misi-card"><div class="vm-misi-num">05</div><h3>Kepemimpinan & Wirausaha</h3><p>Menumbuhkan jiwa kepemimpinan dan kewirausahaan serta rasa tanggung jawab.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">04</div><h3>Studi &amp; Karir</h3><p>Mempersiapkan siswa untuk melanjutkan studi ke jenjang yang lebih tinggi atau memasuki dunia kerja.</p></div>
+                        <div class="vm-misi-card"><div class="vm-misi-num">05</div><h3>Kepemimpinan &amp; Wirausaha</h3><p>Menumbuhkan jiwa kepemimpinan dan kewirausahaan serta rasa tanggung jawab.</p></div>
                         <div class="vm-misi-card"><div class="vm-misi-num">06</div><h3>Kerjasama Stakeholder</h3><p>Menjalin kerjasama dengan semua stakeholder untuk mendukung pencapaian tujuan bersama.</p></div>
                     </div>
                 </div>
 
-                <!-- Kurikulum -->
+                <!-- Sub Panel: Kurikulum -->
                 <div class="vm-sub-panel" id="vm-kur">
                     <div class="vm-visi-card" style="margin-bottom:20px">
                         <div class="vm-visi-icon">📘</div>
@@ -482,7 +893,7 @@
                     </div>
                 </div>
 
-                <!-- Tujuan -->
+                <!-- Sub Panel: Tujuan -->
                 <div class="vm-sub-panel" id="vm-tujuan">
                     <div class="vm-sub-tabs" id="vmTujuanTabs" style="margin-bottom:20px">
                         <button class="vm-sub-btn active" data-target="vm-tj-sekolah">Tujuan Sekolah</button>
@@ -506,14 +917,144 @@
                             <div class="vm-tujuan-item"><div class="vm-tujuan-icon">📈</div><div><h4>Lulusan Tersertifikasi</h4><p>Meningkatnya persentase lulusan yang tersertifikasi, terserap di dunia kerja, atau melanjutkan ke jenjang pendidikan yang lebih tinggi.</p></div></div>
                         </div>
                     </div>
-                </div>
+                </div><!-- /vm-tujuan -->
 
+            </div><!-- /vm-panel -->
+        </div><!-- /tab-visi-misi -->
+
+    </div><!-- /container -->
+</section><!-- /section#fitur -->
+
+<!-- ==========================================
+     ANCHOR untuk navigasi langsung ke Visi & Misi
+========================================== -->
+<div id="visi-misi-section" style="position:relative;top:-80px;visibility:hidden;"></div>
+
+<!-- ==========================================
+     SMART KURIKULUM TOOLS — Section Baru (Section 6)
+     3 kartu aplikasi: Ledger, Daftar Nilai US, SKL Generator
+========================================== -->
+<section class="tools-section" id="smart-tools">
+    <div class="container">
+
+        <!-- Header section -->
+        <div class="tools-section-header reveal">
+            <div class="tools-badge">
+                <i class="fas fa-circle"></i>
+                Aplikasi Terintegrasi
+            </div>
+            <h2 class="tools-title">
+                Smart Kurikulum <span class="tools-highlight">Tools</span>
+            </h2>
+            <p class="tools-subtitle">
+                Kumpulan aplikasi digital untuk mendukung pengelolaan nilai, laporan akademik, dan sertifikasi kelulusan di SMK Negeri 1 Maluku Tengah.
+            </p>
+            <!-- Divider dekoratif -->
+            <div class="tools-divider">
+                <span></span><span></span><span></span>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- KEUNGGULAN -->
+        <!-- Grid 3 kartu tools -->
+        <div class="tools-grid stagger">
+
+            <!-- ===== KARTU 1: Ledger Nilai Semester 1–6 ===== -->
+            <div class="tool-card reveal">
+                <!-- Nomor dekoratif -->
+                <div class="tool-card-num">01</div>
+
+                <div class="tool-card-top">
+                    <!-- Ikon -->
+                    <div class="tool-icon-wrap">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <!-- Judul -->
+                    <h3>Ledger Nilai Semester 1–6</h3>
+                    <!-- Deskripsi -->
+                    <p>
+                        Aplikasi pengelolaan dan rekap nilai siswa per semester secara lengkap dari semester 1 hingga semester 5. Mudah diakses, terstruktur, dan akurat.
+                    </p>
+                    <!-- Tag fitur -->
+                    <div class="tool-features">
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Sem 1 – 5</span>
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Rekap Otomatis</span>
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Data Lengkap</span>
+                    </div>
+                </div>
+
+                <div class="tool-card-footer">
+                    <!-- Tombol buka — target="_blank" agar buka tab baru -->
+                    <a href="https://alexbahy-tech.github.io/ledger-sem-1---6-/" target="_blank" rel="noopener noreferrer" class="btn-tool">
+                        <i class="fas fa-external-link-alt"></i>
+                        Buka Aplikasi
+                        <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div><!-- /kartu 1 -->
+
+            <!-- ===== KARTU 2: Daftar Nilai Ujian Sekolah 2026 ===== -->
+            <div class="tool-card reveal">
+                <div class="tool-card-num">02</div>
+
+                <div class="tool-card-top">
+                    <div class="tool-icon-wrap">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3>Daftar Nilai Ujian Sekolah 2026</h3>
+                    <p>
+                        Portal pengolahan dan pengelolaan nilai Ujian Sekolah tahun 2026. Tampilan modern, input terstruktur, dan mudah digunakan oleh guru mapel.
+                    </p>
+                    <div class="tool-features">
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Ujian Sekolah</span>
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> TA 2025/2026</span>
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Semua Mapel</span>
+                    </div>
+                </div>
+
+                <div class="tool-card-footer">
+                    <a href="https://alexbahy-tech.github.io/daftar-nilai-US-2026/" target="_blank" rel="noopener noreferrer" class="btn-tool">
+                        <i class="fas fa-external-link-alt"></i>
+                        Buka Aplikasi
+                        <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div><!-- /kartu 2 -->
+
+            <!-- ===== KARTU 3: SKL Generator ===== -->
+            <div class="tool-card reveal">
+                <div class="tool-card-num">03</div>
+
+                <div class="tool-card-top">
+                    <div class="tool-icon-wrap">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>SKL Generator</h3>
+                    <p>
+                        Buat Surat Keterangan Lulus (SKL) siswa secara otomatis dan cepat. Mendukung efisiensi administrasi kelulusan tanpa proses manual yang memakan waktu.
+                    </p>
+                    <div class="tool-features">
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Otomatis</span>
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Cepat &amp; Akurat</span>
+                        <span class="tool-feature-tag"><i class="fas fa-check-circle"></i> Surat Resmi</span>
+                    </div>
+                </div>
+
+                <div class="tool-card-footer">
+                    <a href="https://alexbahy-tech.github.io/SKL-generator/" target="_blank" rel="noopener noreferrer" class="btn-tool">
+                        <i class="fas fa-external-link-alt"></i>
+                        Buka Aplikasi
+                        <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div><!-- /kartu 3 -->
+
+        </div><!-- /tools-grid -->
+    </div><!-- /container -->
+</section><!-- /tools-section -->
+
+<!-- ==========================================
+     KEUNGGULAN PORTAL
+========================================== -->
 <section class="section advantages-section" id="keunggulan">
     <div class="container">
         <div class="section-header reveal" style="text-align:center;">
@@ -522,26 +1063,33 @@
             <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Dirancang untuk mempermudah ekosistem akademik di SMK Negeri 1 Maluku Tengah.</p>
         </div>
         <div class="advantages-grid stagger">
-            <div class="adv-card"><div class="adv-icon"><i class="fas fa-layer-group"></i></div><h4>Terpusat & Terintegrasi</h4><p>Seluruh dokumen kurikulum, jadwal, dan data akademik tersedia dalam satu portal yang mudah diakses.</p></div>
+            <div class="adv-card"><div class="adv-icon"><i class="fas fa-layer-group"></i></div><h4>Terpusat &amp; Terintegrasi</h4><p>Seluruh dokumen kurikulum, jadwal, dan data akademik tersedia dalam satu portal yang mudah diakses.</p></div>
             <div class="adv-card"><div class="adv-icon"><i class="fas fa-hand-pointer"></i></div><h4>Mudah Digunakan</h4><p>Antarmuka intuitif untuk semua pengguna — guru, siswa, dan orang tua — tanpa perlu pelatihan khusus.</p></div>
-            <div class="adv-card"><div class="adv-icon"><i class="fas fa-shield-halved"></i></div><h4>Transparan & Akurat</h4><p>Data terverifikasi dan diperbarui berkala oleh tim kurikulum sekolah untuk menjamin keakuratan.</p></div>
+            <div class="adv-card"><div class="adv-icon"><i class="fas fa-shield-halved"></i></div><h4>Transparan &amp; Akurat</h4><p>Data terverifikasi dan diperbarui berkala oleh tim kurikulum sekolah untuk menjamin keakuratan.</p></div>
             <div class="adv-card"><div class="adv-icon"><i class="fas fa-rocket"></i></div><h4>Digitalisasi Sekolah</h4><p>Mendukung transformasi digital menuju tata kelola pendidikan yang modern dan efisien.</p></div>
         </div>
     </div>
 </section>
 
-<!-- CTA -->
+<!-- ==========================================
+     CTA — Ajakan Tindakan
+========================================== -->
 <section class="cta-section">
     <div class="container">
         <div class="cta-banner reveal">
             <h3>Siap Mengakses Portal?</h3>
             <p>Jelajahi seluruh fitur SmartKurikulum Center dan permudah alur kerja akademik Anda.</p>
-            <a href="#fitur" class="btn btn-white"><i class="fas fa-arrow-right"></i> Mulai Sekarang</a>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;">
+                <a href="#fitur" class="btn btn-white"><i class="fas fa-arrow-right"></i> Masuk Portal</a>
+                <a href="#smart-tools" class="btn btn-secondary"><i class="fas fa-tools"></i> Smart Kurikulum Tools</a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ==========================================
+     FOOTER — Kontak & Link
+========================================== -->
 <footer id="kontak">
     <div class="container">
         <div class="footer-top">
@@ -552,13 +1100,15 @@
                 </div>
                 <p>Portal kurikulum dan akademik terpadu milik SMK Negeri 1 Maluku Tengah. Dikelola oleh Wakasek Bidang Kurikulum.</p>
             </div>
+            <!-- Kolom Menu Footer — ditambahkan link Tools -->
             <div class="footer-col">
                 <h4>Menu</h4>
                 <ul>
                     <li><a href="#">Beranda</a></li>
                     <li><a href="#fitur">Portal</a></li>
                     <li><a href="#keunggulan">Keunggulan</a></li>
-                    <li><a href="#fitur" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)">Visi & Misi</a></li>
+                    <li><a href="#smart-tools">Smart Kurikulum Tools</a></li><!-- LINK BARU -->
+                    <li><a href="#fitur" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)">Visi &amp; Misi</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -574,7 +1124,8 @@
         <div class="footer-bottom">
             <span>&copy; 2025 SmartKurikulum Center — SMK Negeri 1 Maluku Tengah</span>
             <div class="footer-bottom-links">
-                <a href="#fitur" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)">Visi & Misi</a>
+                <a href="#fitur" onclick="setTimeout(()=>switchMainTab('visi-misi'),400)">Visi &amp; Misi</a>
+                <a href="#smart-tools">Smart Kurikulum Tools</a><!-- LINK BARU -->
                 <a href="mailto:alexbahy@500gb.cloud">Email</a>
                 <a href="https://wa.me/6281249855174" target="_blank">WhatsApp</a>
             </div>
@@ -582,10 +1133,16 @@
     </div>
 </footer>
 
+<!-- ==========================================
+     JAVASCRIPT — Semua fungsi asli dipertahankan
+     + tambahan scroll anchor untuk visi-misi
+========================================== -->
 <script>
+    // ---- Navbar scroll effect ----
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10));
 
+    // ---- Hamburger / Mobile Menu ----
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -599,20 +1156,34 @@
         document.body.style.overflow = '';
     }
 
+    // ---- Intersection Observer untuk animasi reveal ----
     const observer = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
 
+    // ---- Search — juga handle "ledger", "skl", "ujian sekolah" ----
     document.getElementById('searchInput').addEventListener('input', function () {
         const q = this.value.toLowerCase().trim();
-        if (q && (q.includes('visi') || q.includes('misi'))) { switchMainTab('visi-misi'); return; }
+
+        // Jika query mengandung kata visi/misi → switch ke tab visi-misi
+        if (q && (q.includes('visi') || q.includes('misi'))) {
+            switchMainTab('visi-misi');
+            return;
+        }
+        // Jika query mengandung kata terkait tools → scroll ke section tools
+        if (q && (q.includes('ledger') || q.includes('skl') || q.includes('generator') || q.includes('surat keterangan'))) {
+            switchMainTab('portal');
+        }
         if (q) switchMainTab('portal');
+
+        // Filter feature items
         const items = document.querySelectorAll('.feature-item');
         items.forEach(item => {
             const text = (item.textContent + ' ' + (item.dataset.search || '')).toLowerCase();
             item.style.display = text.includes(q) ? 'flex' : 'none';
         });
+        // Sembunyikan kolom feature-group yang semua item-nya hidden
         document.querySelectorAll('.feature-group').forEach(group => {
             const vis = group.querySelectorAll('.feature-item[style*="flex"], .feature-item:not([style])');
             const hid = group.querySelectorAll('.feature-item[style*="none"]');
@@ -620,15 +1191,24 @@
         });
     });
 
+    // ---- Fungsi switch tab utama (Portal / Visi Misi) ----
     function switchMainTab(name) {
         const targetId = 'tab-' + name;
-        document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.target === targetId));
-        document.querySelectorAll('.main-tab-panel').forEach(p => p.classList.toggle('active', p.id === targetId));
+        document.querySelectorAll('.main-tab-btn').forEach(b =>
+            b.classList.toggle('active', b.dataset.target === targetId)
+        );
+        document.querySelectorAll('.main-tab-panel').forEach(p =>
+            p.classList.toggle('active', p.id === targetId)
+        );
     }
+    // Event listener tombol tab utama
     document.querySelectorAll('.main-tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() { switchMainTab(this.dataset.target.replace('tab-', '')); });
+        btn.addEventListener('click', function() {
+            switchMainTab(this.dataset.target.replace('tab-', ''));
+        });
     });
 
+    // ---- Sub Tabs Visi Misi (Visi / Misi / Kurikulum / Tujuan) ----
     document.querySelectorAll('.vm-sub-tabs').forEach(tabGroup => {
         tabGroup.querySelectorAll('.vm-sub-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -642,15 +1222,34 @@
         });
     });
 
+    // ---- Active nav link berdasarkan scroll position ----
     const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
         let current = '';
-        sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 200) current = sec.getAttribute('id'); });
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 200) current = sec.getAttribute('id');
+        });
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) link.classList.add('active');
             if (!current && link.getAttribute('href') === '#') link.classList.add('active');
+        });
+    });
+
+    // ---- Klik "Visi & Misi" di navbar → switch tab + scroll ke section ----
+    // (fitur tambahan agar klik nav langsung buka tab yang benar)
+    document.querySelectorAll('a[href="#visi-misi-section"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchMainTab('visi-misi');
+            // Scroll ke section fitur (karena tab visi misi ada di dalam section fitur)
+            const target = document.getElementById('fitur');
+            if (target) {
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
         });
     });
 </script>
